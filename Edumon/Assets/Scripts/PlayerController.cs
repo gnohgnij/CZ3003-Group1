@@ -5,24 +5,60 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    private bool isMoving;
+    private Vector2 input;
 
     private void Update() 
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (!isMoving)
         {
-            transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+            input.x = Input.GetAxisRaw("Horizontal");
+            input.y = Input.GetAxisRaw("Vertical");
+            
+            //remove diagonal movement
+            if (input.x != 0) input.y = 0;
+            
+            if (input != Vector2.zero)
+            {
+                var targetPos = transform.position;
+                targetPos.x += input.x;
+                targetPos.y += input.y;
+
+                StartCoroutine(Move(targetPos));
+            }
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+
+        IEnumerator Move(Vector3 targetPos)
         {
-            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            isMoving = true;
+            
+            while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+
+            transform.position = targetPos;
+
+            isMoving = false;
         }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.position += Vector3.up * moveSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.position += Vector3.down * moveSpeed * Time.deltaTime;
-        }
+        
+        
+        // if (Input.GetKey(KeyCode.LeftArrow))
+        // {
+        //     transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+        // }
+        // if (Input.GetKey(KeyCode.RightArrow))
+        // {
+        //     transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+        // }
+        // if (Input.GetKey(KeyCode.UpArrow))
+        // {
+        //     transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+        // }
+        // if (Input.GetKey(KeyCode.DownArrow))
+        // {
+        //     transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+        // }
     }
 }
