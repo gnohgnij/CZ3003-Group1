@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     private Vector2 input;
 
+    public Animator animator;
+
     private void Update() 
     {
         if (!isMoving)
@@ -35,8 +37,13 @@ public class PlayerController : MonoBehaviour
             while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+                if (targetPos.y > 0) {
+                    animator.SetBool("moveRight", true);
+                }
                 yield return null;
             }
+
+            animator.SetBool("moveRight", false);
 
             transform.position = targetPos;
 
