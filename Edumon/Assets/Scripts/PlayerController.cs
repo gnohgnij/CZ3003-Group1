@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 input;
 
     public Animator animator;
+    public LayerMask decorations;
 
-    private void Update() 
+    void Update() 
     {
         if (!isMoving)
         {
@@ -28,7 +29,8 @@ public class PlayerController : MonoBehaviour
                 targetPos.x += input.x;
                 targetPos.y += input.y;
 
-                StartCoroutine(Move(targetPos));
+                if (IsWalkable(targetPos))
+                    StartCoroutine(Move(targetPos));
             }
 
             animator.SetBool("isMoving", isMoving);
@@ -47,6 +49,15 @@ public class PlayerController : MonoBehaviour
             transform.position = targetPos;
 
             isMoving = false;
+        }
+
+        bool IsWalkable(Vector3 targetPos) 
+        {
+            if (Physics2D.OverlapBox(targetPos, new Vector2(0, 0), 0.0f, decorations) != null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
