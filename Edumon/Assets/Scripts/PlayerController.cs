@@ -22,12 +22,16 @@ public class PlayerController : MonoBehaviour
             
             if (input != Vector2.zero)
             {
+                animator.SetFloat("moveX", input.x);
+                animator.SetFloat("moveY", input.y);
                 var targetPos = transform.position;
                 targetPos.x += input.x;
                 targetPos.y += input.y;
 
                 StartCoroutine(Move(targetPos));
             }
+
+            animator.SetBool("isMoving", isMoving);
         }
 
         IEnumerator Move(Vector3 targetPos)
@@ -37,35 +41,12 @@ public class PlayerController : MonoBehaviour
             while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-                if (targetPos.y > 0) {
-                    animator.SetBool("moveRight", true);
-                }
                 yield return null;
             }
-
-            animator.SetBool("moveRight", false);
 
             transform.position = targetPos;
 
             isMoving = false;
         }
-        
-        
-        // if (Input.GetKey(KeyCode.LeftArrow))
-        // {
-        //     transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-        // }
-        // if (Input.GetKey(KeyCode.RightArrow))
-        // {
-        //     transform.position += Vector3.right * moveSpeed * Time.deltaTime;
-        // }
-        // if (Input.GetKey(KeyCode.UpArrow))
-        // {
-        //     transform.position += Vector3.up * moveSpeed * Time.deltaTime;
-        // }
-        // if (Input.GetKey(KeyCode.DownArrow))
-        // {
-        //     transform.position += Vector3.down * moveSpeed * Time.deltaTime;
-        // }
     }
 }
