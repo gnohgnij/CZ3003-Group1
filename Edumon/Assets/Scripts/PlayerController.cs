@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 input;
 
     public Animator animator;
-    public LayerMask decorations;
+    public LayerMask solidObjectsLayer;
 
     void Update() 
     {
@@ -53,11 +53,17 @@ public class PlayerController : MonoBehaviour
 
         bool IsWalkable(Vector3 targetPos) 
         {
-            if (Physics2D.OverlapBox(targetPos, new Vector2(0, 0), 0.0f, decorations) != null)
+            if (Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectsLayer) != null)
             {
                 return false;
             }
+
             return true;
+            // if (Physics2D.OverlapBox(targetPos, new Vector2(0, 0), 0.0f, decorations) != null)
+            // {
+            //     return false;
+            // }
+            // return true;
         }
     }
 }
