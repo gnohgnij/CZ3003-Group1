@@ -59,11 +59,6 @@ public class PlayerController : MonoBehaviour
             }
 
             return true;
-            // if (Physics2D.OverlapBox(targetPos, new Vector2(0, 0), 0.0f, decorations) != null)
-            // {
-            //     return false;
-            // }
-            // return true;
         }
     }
 }
