@@ -61,6 +61,8 @@
      <Compile Include="Assets\Scripts\LoginRegister\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\Portal.cs" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -246,6 +248,27 @@
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>D:/CodingProject/Unity/CZ3003-Group1/Edumon/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.App">
+ <HintPath>D:/CodingProject/Unity/CZ3003-Group1/Edumon/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Platform">
+ <HintPath>D:/CodingProject/Unity/CZ3003-Group1/Edumon/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Tasks">
+ <HintPath>D:/CodingProject/Unity/CZ3003-Group1/Edumon/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.MiniJson">
+ <HintPath>D:/CodingProject/Unity/CZ3003-Group1/Edumon/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Auth">
+ <HintPath>D:/CodingProject/Unity/CZ3003-Group1/Edumon/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Compat">
+ <HintPath>D:/CodingProject/Unity/CZ3003-Group1/Edumon/Assets/Parse/Plugins/dotNet45/Unity.Compat.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.TaskExtension">
+ <HintPath>D:/CodingProject/Unity/CZ3003-Group1/Edumon/Assets/Firebase/Plugins/Firebase.TaskExtension.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
