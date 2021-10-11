@@ -59,6 +59,8 @@
      <Compile Include="Assets\Scripts\FollowPlayer.cs" />
      <Compile Include="Assets\Scripts\Gameplay\IPlayerTriggerable.cs" />
      <Compile Include="Assets\Scripts\LoginRegister\ChangeScene.cs" />
+     <Compile Include="Assets\Scripts\LoginRegister\LoginManager.cs" />
+     <Compile Include="Assets\Scripts\LoginRegister\RegisterManager.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\Portal.cs" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
