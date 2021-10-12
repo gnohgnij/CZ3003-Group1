@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 170919382}
   - component: {fileID: 170919381}
   - component: {fileID: 170919380}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ MonoBehaviour:
   animator: {fileID: 170919380}
   solidObjectsLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 256
 --- !u!212 &170919382
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -311,8 +311,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1076179187
-  m_SortingLayer: 4
+  m_SortingLayerID: 46415759
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7152930139536384079, guid: cc7f15d352a698540a0d0d9371cd1458,
     type: 3}
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 741725656}
   - component: {fileID: 741725658}
   - component: {fileID: 741725657}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Foreground2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 883088606}
   - component: {fileID: 883088608}
   - component: {fileID: 883088607}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Background2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -899,7 +899,7 @@ GameObject:
   - component: {fileID: 1417905710}
   - component: {fileID: 1417905709}
   - component: {fileID: 1417905711}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9679,7 +9679,7 @@ GameObject:
   - component: {fileID: 1727280031}
   - component: {fileID: 1727280030}
   - component: {fileID: 1727280029}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9736,8 +9736,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 46415759
-  m_SortingLayer: 3
+  m_SortingLayerID: -353523665
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}

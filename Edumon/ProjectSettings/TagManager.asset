@@ -13,11 +13,11 @@ TagManager:
   - UI
   - 
   - 
-  - Background
-  - Decorations
-  - Player
   - SolidObjects
   - Portal
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -44,12 +44,9 @@ TagManager:
   - name: Background
     uniqueID: 469680251
     locked: 0
-  - name: Decorations
+  - name: Foreground
     uniqueID: 3941443631
     locked: 0
-  - name: SolidObjects
-    uniqueID: 46415759
-    locked: 0
   - name: Player
-    uniqueID: 1076179187
+    uniqueID: 46415759
     locked: 0
