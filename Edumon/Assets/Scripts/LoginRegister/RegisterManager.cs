@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Firebase;
-using Firebase.Auth;
+using UnityEngine.Networking;
+
+using static User;
 
 public class RegisterManager : MonoBehaviour
 {
@@ -11,86 +12,60 @@ public class RegisterManager : MonoBehaviour
     public InputField EmailInputField;
     public InputField PasswordInputField;
     public InputField RePasswordInputField;
-
-    public DependencyStatus dependencyStatus;
-    public FirebaseAuth auth;
-    public FirebaseUser User;
-
-    void Awake()
-    {
-        //Check that all of the necessary dependencies for Firebase are present on the system
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
-        {
-            dependencyStatus = task.Result;
-            if (dependencyStatus == DependencyStatus.Available)
-            {
-                //If they are avalible Initialize Firebase
-                InitializeFirebase();
-            }
-            else
-            {
-                Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
-            }
-        });
-    }
-
-    private void InitializeFirebase()
-    {
-        Debug.Log("Setting up Firebase Auth");
-        //Set the authentication instance object
-        auth = FirebaseAuth.DefaultInstance;
-    }
+    public Text WarningText;
 
     //Function for the login button
     public void RegisterButton()
     {
+        string url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA0R4_B-i562Bv6kX9vDwZdBuVgk0RmcAA";
         //Call the login coroutine passing the email and password
-        StartCoroutine(Register(EmailInputField.text, PasswordInputField.text));
+        StartCoroutine(Register(url, EmailInputField.text, PasswordInputField.text));
     }
 
-    private IEnumerator Register(string _email, string _password)
+    private IEnumerator Register(string _url, string _email, string _password)
     {
+        WarningText.gameObject.SetActive(false);
         if (PasswordInputField.text != RePasswordInputField.text)
         {
-            //If the password does not match show a warning
-            Debug.LogWarning(message: "Password Does Not Match!");
+            WarningText.text = "Password does not match";
+            WarningText.gameObject.SetActive(true);
         }
         else
         {
-            //Call the Firebase auth signin function passing the email and password
-            var RegisterTask = auth.CreateUserWithEmailAndPasswordAsync(_email, _password);
-            //Wait until the task completes
-            yield return new WaitUntil(predicate: () => RegisterTask.IsCompleted);
+            WWWForm form = new WWWForm();
+            form.AddField("email", _email);
+            form.AddField("password", _password);
+            form.AddField("returnSecureToken", "true");
 
-            if (RegisterTask.Exception != null)
+            UnityWebRequest uwr = UnityWebRequest.Post(_url, form);
+            yield return uwr.SendWebRequest();
+
+            if (uwr.isNetworkError)
             {
-                //If there are errors handle them
-                Debug.LogWarning(message: $"Failed to register task with {RegisterTask.Exception}");
-                FirebaseException firebaseEx = RegisterTask.Exception.GetBaseException() as FirebaseException;
-                AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
-
-                switch (errorCode)
-                {
-                    case AuthError.MissingEmail:
-                        Debug.LogWarning(message: "Missing Email");
-                        break;
-                    case AuthError.MissingPassword:
-                        Debug.LogWarning(message: "Missing Password");
-                        break;
-                    case AuthError.WeakPassword:
-                        Debug.LogWarning(message: "Weak Password");
-                        break;
-                    case AuthError.EmailAlreadyInUse:
-                        Debug.LogWarning(message: "Email Already In Use");
-                        break;
-                }
+                WarningText.text = "Network Error";
+                WarningText.gameObject.SetActive(true);
             }
             else
             {
-                //User has now been created
-                //Now get the result
-                User = RegisterTask.Result;
-                Debug.LogFormat("User created successfully: {0} ({1})", User.DisplayName, User.Email);
+                User user = JsonUtility.FromJson<User>(uwr.downloadHandler.text);
+                if (user.localId == null)
+                {
+                    if (user.error.code == 400 )
+                    {
+                        WarningText.text = "Email exists in database";
+                        WarningText.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        WarningText.text = "Unknown Error. Unable to Register";
+                        WarningText.gameObject.SetActive(true);
+                    }
+                }
+                else
+                {
+                    WarningText.text = "Register Successful";
+                    WarningText.gameObject.SetActive(true);
+                }
             }
         }
     }
