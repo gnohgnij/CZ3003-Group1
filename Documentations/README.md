@@ -14,3 +14,9 @@
   * View the Use Case Diagram (Login, Signup) [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%201/Use%20Case%20Diagram%20(Login%2C%20Signup).png)
 
   * View the Use Case Diagram (Main) [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%201/Use%20Case%20Diagram%20(Main).png)
+ 
+## Candidate Architecture
+* View the full Candidate Architecture Documentation [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%202/Candidate%20Architecture.pdf)
+
+## Subsystem Interface Design
+* View the full Susbsytem Interface Design Documentation [here]()
