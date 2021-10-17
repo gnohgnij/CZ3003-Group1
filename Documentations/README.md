@@ -19,4 +19,4 @@
 * View the full Candidate Architecture Documentation [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%202/Candidate%20Architecture.pdf)
 
 ## Subsystem Interface Design
-* View the full Susbsytem Interface Design Documentation [here]()
+* View the full Susbsytem Interface Design Documentation [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%202/Subsystems%20Architectures.pdf)
