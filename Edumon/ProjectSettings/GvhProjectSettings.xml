@@ -2,8 +2,7 @@
 <projectSettings>
   <projectSetting name="com.google.external-dependency-managerAnalyticsCookie" value="b18ddf2f36344548b5a3dd194985daf7" />
   <projectSetting name="com.google.external-dependency-managerAnalyticsEnabled" value="True" />
-  <projectSetting name="com.google.firebaseAnalyticsCookie" value="153fcd6338b4465eab78844bf7c13c2b" />
-  <projectSetting name="com.google.firebaseAnalyticsEnabled" value="True" />
+  <projectSetting name="com.google.firebaseAnalyticsEnabled" value="False" />
   <projectSetting name="Google.IOSResolver.VerboseLoggingEnabled" value="False" />
   <projectSetting name="Google.PackageManagerResolver.VerboseLoggingEnabled" value="False" />
   <projectSetting name="Google.VersionHandler.VerboseLoggingEnabled" value="False" />
