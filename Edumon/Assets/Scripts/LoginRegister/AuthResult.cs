@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 
 [Serializable]
-public class User
+public class AuthResult
 {
     public Error error;
     public string localId;
@@ -12,4 +12,3 @@ public class Error
 {
     public int code;
 }
-

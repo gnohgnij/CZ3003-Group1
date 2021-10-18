@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-
-using static User;
+using UnityEngine.SceneManagement;
 
 public class LoginManager : MonoBehaviour
 {
@@ -32,23 +31,52 @@ public class LoginManager : MonoBehaviour
         UnityWebRequest uwr = UnityWebRequest.Post(_url, form);
         yield return uwr.SendWebRequest();
 
-        if (uwr.isNetworkError)
+        if (uwr.result == UnityWebRequest.Result.ConnectionError)
         {
             WarningText.text = "Network Error";
             WarningText.gameObject.SetActive(true);
         }
         else
         {
-            User user = JsonUtility.FromJson<User>(uwr.downloadHandler.text);
-            if (user.localId == null)
+            AuthResult authResult = JsonUtility.FromJson<AuthResult>(uwr.downloadHandler.text);
+            if (authResult.localId == null)
             {
                 WarningText.text = "Wrong email/password";
                 WarningText.gameObject.SetActive(true);
             }
             else
             {
-                WarningText.text = "Login Successful";
-                WarningText.gameObject.SetActive(true);
+                string accountUrl = "https://cz3003-edumon.herokuapp.com/account/" + authResult.localId;
+                UnityWebRequest accUwr = UnityWebRequest.Get(accountUrl);
+                yield return accUwr.SendWebRequest();
+
+                if (accUwr.result == UnityWebRequest.Result.ConnectionError)
+                {
+                    WarningText.text = "Network Error";
+                    WarningText.gameObject.SetActive(true);
+                }
+                else
+                {
+                    UserResult userResult = JsonUtility.FromJson<UserResult>(accUwr.downloadHandler.text);
+                    if (userResult.status == "fail")
+                    {
+                        WarningText.text = "Account Error. Please contact the admin";
+                        WarningText.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        StateManager.user = userResult.data;
+                        StateManager.user.email = _email;
+                        if (StateManager.user.type == "teacher")
+                        {
+                            SceneManager.LoadScene("TeacherHome");
+                        }
+                        else
+                        {
+                            SceneManager.LoadScene("StudentHome");
+                        }
+                    }
+                }
             }
         }
     }
