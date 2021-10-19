@@ -8,4 +8,6 @@ public class StateManager : MonoBehaviour
     public static bool showRegistered = false;
     public static string apiUrl = "https://cz3003-edumon.herokuapp.com/";
     public static string localhostUrl = "http://127.0.0.1:3000/";
+    public static bool teacherProfileStatusTag = false;
+    public static string teacherProfileStatusMessage = "";
 }
