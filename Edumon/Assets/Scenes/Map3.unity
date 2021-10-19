@@ -183,7 +183,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 46415759
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7152930139536384079, guid: cc7f15d352a698540a0d0d9371cd1458,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -227,6 +227,9 @@ MonoBehaviour:
   solidObjectsLayer:
     serializedVersion: 2
     m_Bits: 256
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!95 &243271337
 Animator:
   serializedVersion: 3
