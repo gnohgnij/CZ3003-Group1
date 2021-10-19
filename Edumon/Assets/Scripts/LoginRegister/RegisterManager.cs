@@ -34,17 +34,12 @@ public class RegisterManager : MonoBehaviour
         // actual firebase
         string url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA0R4_B-i562Bv6kX9vDwZdBuVgk0RmcAA";
         
-        // test firebase
-        // string url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAjwveFghM1hgay8Vtbi7xegpEMdoyIjpE";
-        
         //Call the login coroutine passing the email and password
         StartCoroutine(Register(url, UsernameInputField.text, StudentIdInputField.text, EmailInputField.text, PasswordInputField.text, RePasswordInputField.text));
     }
 
     private IEnumerator Register(string _url, string _username, string _studentId, string _email, string _password, string _rePassword)
     {
-        Debug.Log(accountType == "student");
-        Debug.Log(string.IsNullOrWhiteSpace(_studentId));
         WarningText.gameObject.SetActive(false);
         if ((accountType == "teacher" && 
             (string.IsNullOrWhiteSpace(_username) || 
@@ -109,8 +104,9 @@ public class RegisterManager : MonoBehaviour
                 }
                 else
                 {
-                    string accUrl = "https://cz3003-edumon.herokuapp.com/account";
-                    
+                    // string accUrl = StateManager.apiUrl + "account";
+                    string accUrl = StateManager.localhostUrl + "account"; 
+
                     WWWForm form2 = new WWWForm();
                     form2.AddField("id", authResult.localId);
                     form2.AddField("username", _username);
@@ -127,7 +123,6 @@ public class RegisterManager : MonoBehaviour
 
                     UnityWebRequest accUwr = UnityWebRequest.Post(accUrl, form2);
                     yield return accUwr.SendWebRequest();
-                    Debug.Log(accUwr.downloadHandler.text);
 
                     if (accUwr.result == UnityWebRequest.Result.ConnectionError)
                     {

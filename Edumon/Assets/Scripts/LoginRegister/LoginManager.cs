@@ -46,7 +46,10 @@ public class LoginManager : MonoBehaviour
             }
             else
             {
-                string accountUrl = "https://cz3003-edumon.herokuapp.com/account/" + authResult.localId;
+                //string accountUrl = StateManager.apiUrl + "account/" + authResult.localId;
+
+                string accountUrl = StateManager.localhostUrl + "account/" + authResult.localId;
+                
                 UnityWebRequest accUwr = UnityWebRequest.Get(accountUrl);
                 yield return accUwr.SendWebRequest();
 
