@@ -8,4 +8,5 @@ public class User
     public string type;
     public string studentid;
     public string email;
+    public string password;
 }

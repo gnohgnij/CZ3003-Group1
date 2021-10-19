@@ -26,4 +26,9 @@ public class TeacherProfileController : MonoBehaviour
     {
         SceneManager.LoadScene("TeacherHome");
     }
+
+    public void Btn_Edit_Profile_Clicked()
+    {
+        SceneManager.LoadScene("TeacherEditProfile");
+    }
 }

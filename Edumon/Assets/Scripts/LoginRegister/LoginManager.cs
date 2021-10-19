@@ -21,7 +21,7 @@ public class LoginManager : MonoBehaviour
 
     private IEnumerator Login(string _url, string _email, string _password)
     {
-        WarningText.gameObject.SetActive(true);
+        WarningText.gameObject.SetActive(false);
 
         WWWForm form = new WWWForm();
         form.AddField("email", _email);
@@ -70,6 +70,7 @@ public class LoginManager : MonoBehaviour
                     {
                         StateManager.user = userResult.data;
                         StateManager.user.email = _email;
+                        StateManager.user.password = _password;
                         if (StateManager.user.type == "teacher")
                         {
                             SceneManager.LoadScene("TeacherHome");
