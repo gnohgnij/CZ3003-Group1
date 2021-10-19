@@ -17,6 +17,31 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    void Update()
+    {
+        if (!isMoving)
+        {
+            input.x = Input.GetAxisRaw("Horizontal");
+            input.y = Input.GetAxisRaw("Vertical");
+
+            //remove diagonal movement
+            if (input.x != 0) input.y = 0;
+
+            if (input != Vector2.zero)
+            {
+                animator.SetFloat("moveX", input.x);
+                animator.SetFloat("moveY", input.y);
+                var targetPos = transform.position;
+                targetPos.x += input.x;
+                targetPos.y += input.y;
+
+                if (IsWalkable(targetPos))
+                    StartCoroutine(Move(targetPos));
+            }
+        }
+        animator.SetBool("isMoving", isMoving);
+    }
+
     public void HandleUpdate()
     {
         if (!isMoving)
