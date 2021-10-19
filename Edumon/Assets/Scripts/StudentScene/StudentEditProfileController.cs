@@ -6,9 +6,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 
-public class TeacherEditProfileController : MonoBehaviour
+public class StudentEditProfileController : MonoBehaviour
 {
     public InputField UsernameInputField;
+    public InputField StudentIdField;
     public InputField EmailInputField;
     public InputField PasswordInputField;
     public InputField RePasswordInputField;
@@ -19,6 +20,7 @@ public class TeacherEditProfileController : MonoBehaviour
     {
         WarningText.gameObject.SetActive(false);
         UsernameInputField.text = StateManager.user.username;
+        StudentIdField.text = StateManager.user.studentid;
         EmailInputField.text = StateManager.user.email;
     }
 
@@ -30,20 +32,20 @@ public class TeacherEditProfileController : MonoBehaviour
 
     public void Btn_Back_Clicked()
     {
-        SceneManager.LoadScene("TeacherProfile");
+        SceneManager.LoadScene("StudentProfile");
     }
 
     public void Btn_Edit_Clicked()
     {
         WarningText.gameObject.SetActive(false);
-        StartCoroutine(EditProfile(UsernameInputField.text, EmailInputField.text, PasswordInputField.text, RePasswordInputField.text));
+        StartCoroutine(EditProfile(UsernameInputField.text, StudentIdField.text, EmailInputField.text, PasswordInputField.text, RePasswordInputField.text));
     }
 
-    private IEnumerator EditProfile(string _username, string _email, string _password, string _rePassword)
-    { 
-        if (string.IsNullOrWhiteSpace(_username) || string.IsNullOrWhiteSpace(_email))
+    private IEnumerator EditProfile(string _username, string _studentId, string _email, string _password, string _rePassword)
+    {
+        if (string.IsNullOrWhiteSpace(_username) || string.IsNullOrWhiteSpace(_email) || string.IsNullOrWhiteSpace(_studentId))
         {
-            WarningText.text = "Username/Email cannot be empty";
+            WarningText.text = "Username/Email/StudentId cannot be empty";
             WarningText.gameObject.SetActive(true);
         }
         else
@@ -51,12 +53,12 @@ public class TeacherEditProfileController : MonoBehaviour
             bool stop = false;
             AuthResult authResult = null;
 
-            // Change username
+            // Change username and studentId
             string changeUsernameUrl = StateManager.localhostUrl + "account/username";
             WWWForm usernameForm = new WWWForm();
             usernameForm.AddField("id", StateManager.user.uid);
             usernameForm.AddField("username", _username);
-            usernameForm.AddField("studentId", "");
+            usernameForm.AddField("studentId", _studentId);
 
             UnityWebRequest usernameUwr = UnityWebRequest.Post(changeUsernameUrl, usernameForm);
             yield return usernameUwr.SendWebRequest();
@@ -72,14 +74,15 @@ public class TeacherEditProfileController : MonoBehaviour
                 if (userResult.status == "success")
                 {
                     StateManager.user.username = _username;
+                    StateManager.user.studentid = _studentId;
                 }
                 else
                 {
-                    WarningText.text = "Unable to change username. Please contact the admin";
+                    WarningText.text = "Unable to change username/studentId. Please contact the admin";
                     WarningText.gameObject.SetActive(true);
                     stop = true;
                 }
-                
+
             }
 
 
@@ -113,7 +116,7 @@ public class TeacherEditProfileController : MonoBehaviour
 
                 }
             }
-            
+
 
 
             // Change email
@@ -152,7 +155,7 @@ public class TeacherEditProfileController : MonoBehaviour
                     }
                 }
             }
-            
+
 
 
             // Change password
@@ -197,7 +200,7 @@ public class TeacherEditProfileController : MonoBehaviour
                             if (authResult.error.code == 0)
                             {
                                 StateManager.user.password = _password;
-                                WarningText.text = "Successfully change username, email, and password";
+                                WarningText.text = "Successfully change username, studentId,\nemail, and password";
                                 WarningText.gameObject.SetActive(true);
                             }
                             else
@@ -211,7 +214,7 @@ public class TeacherEditProfileController : MonoBehaviour
                 }
                 else
                 {
-                    WarningText.text = "Successfully change username and email";
+                    WarningText.text = "Successfully change username, studentId, and email";
                     WarningText.gameObject.SetActive(true);
                 }
             }

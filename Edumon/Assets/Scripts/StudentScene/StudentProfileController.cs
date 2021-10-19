@@ -28,4 +28,9 @@ public class StudentProfileController : MonoBehaviour
     {
         SceneManager.LoadScene("StudentHome");
     }
+
+    public void Btn_Edit_Profile_Clicked()
+    {
+        SceneManager.LoadScene("StudentEditProfile");
+    }
 }

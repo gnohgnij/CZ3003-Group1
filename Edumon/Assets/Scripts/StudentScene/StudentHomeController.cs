@@ -27,4 +27,9 @@ public class StudentHomeController : MonoBehaviour
         StateManager.user = null;
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void Btn_Enter_World_Clicked()
+    {
+        SceneManager.LoadScene("Map1");
+    }
 }
