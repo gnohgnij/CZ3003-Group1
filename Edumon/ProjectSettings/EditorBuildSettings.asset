@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StudentEditProfile.unity
     guid: e0fc7c5ce49b56144a3b5fddb73bfe9c
+  - enabled: 1
+    path: Assets/Scenes/TeacherEditProfile.unity
+    guid: 012503e3c4dea39489be93d6bb11b836
   m_configObjects: {}
