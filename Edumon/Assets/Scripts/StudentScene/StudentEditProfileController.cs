@@ -54,7 +54,8 @@ public class StudentEditProfileController : MonoBehaviour
             AuthResult authResult = null;
 
             // Change username and studentId
-            string changeUsernameUrl = StateManager.localhostUrl + "account/username";
+            //string changeUsernameUrl = StateManager.localhostUrl + "account/username";
+            string changeUsernameUrl = StateManager.apiUrl + "account/username";
             WWWForm usernameForm = new WWWForm();
             usernameForm.AddField("id", StateManager.user.uid);
             usernameForm.AddField("username", _username);
@@ -139,17 +140,17 @@ public class StudentEditProfileController : MonoBehaviour
                 else
                 {
                     AuthResult tempResult = JsonUtility.FromJson<AuthResult>(updateEmailUwr.downloadHandler.text);
-                    if (authResult.error.code == 0)
+                    if (tempResult.error.code == 0)
                     {
                         StateManager.user.email = _email;
-                    }
-                    else
-                    {
                         if (tempResult.idToken != null)
                         {
                             authResult = JsonUtility.FromJson<AuthResult>(updateEmailUwr.downloadHandler.text);
                         }
-                        WarningText.text = "Error: " + authResult.error.message;
+                    }
+                    else
+                    {
+                        WarningText.text = "Unable to change email.\nError: " + authResult.error.message;
                         WarningText.gameObject.SetActive(true);
                         stop = true;
                     }
@@ -205,7 +206,7 @@ public class StudentEditProfileController : MonoBehaviour
                             }
                             else
                             {
-                                WarningText.text = authResult.error.message;
+                                WarningText.text = "Unable to change password.\nError: " + authResult.error.message;
                                 WarningText.gameObject.SetActive(true);
                                 stop = true;
                             }

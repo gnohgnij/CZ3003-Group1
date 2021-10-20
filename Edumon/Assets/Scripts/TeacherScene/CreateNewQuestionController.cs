@@ -63,7 +63,8 @@ public class CreateNewQuestionController : MonoBehaviour
             }
             else
             {
-                string questionUrl = StateManager.localhostUrl + "question";
+                //string questionUrl = StateManager.localhostUrl + "question";
+                string questionUrl = StateManager.apiUrl + "question";
                 WWWForm questionForm = new WWWForm();
                 questionForm.AddField("question_text", _question);
                 questionForm.AddField("option_one", _option1);

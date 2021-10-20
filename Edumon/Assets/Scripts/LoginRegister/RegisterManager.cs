@@ -104,8 +104,8 @@ public class RegisterManager : MonoBehaviour
                 }
                 else
                 {
-                    // string accUrl = StateManager.apiUrl + "account";
-                    string accUrl = StateManager.localhostUrl + "account"; 
+                    string accUrl = StateManager.apiUrl + "account";
+                    //string accUrl = StateManager.localhostUrl + "account"; 
 
                     WWWForm form2 = new WWWForm();
                     form2.AddField("id", authResult.localId);
