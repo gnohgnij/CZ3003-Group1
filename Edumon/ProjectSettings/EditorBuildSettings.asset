@@ -62,4 +62,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SetAssignment.unity
     guid: 73c590fcda6e5cb45b5645e384cae71f
+  - enabled: 1
+    path: Assets/Scenes/EditGymQuestions.unity
+    guid: 377d55e2559396b4d835fb0c07e1f110
+  - enabled: 1
+    path: Assets/Scenes/ViewSummary.unity
+    guid: cd3bb5dbc4fb2484da5c8569aa13644e
   m_configObjects: {}

@@ -13,6 +13,10 @@ public class StateManager : MonoBehaviour
     public static string teacherProfileStatusMessage = "";
     public static bool teacherHomeStatusTag = false;
     public static string teacherHomeStatusMessage = "";
+
+    public static bool editGymStatusTag = false;
+    public static string editGymStatusMessage = "";
+
     public static bool studentProfileStatusTag = false;
     public static string studentProfileStatusMessage = "";
 

@@ -17,10 +17,22 @@ public class TeacherHomeController : MonoBehaviour
         }
     }
 
+    public void Btn_Edit_Gym_Questions_Clicked()
+    {
+        DisableTag();
+        SceneManager.LoadScene("EditGymQuestions");
+    }
+
     public void Btn_Set_Assignment_Clicked()
     {
         DisableTag();
         SceneManager.LoadScene("SetAssignment");
+    }
+    
+    public void Btn_View_Summary_Clicked()
+    {
+        DisableTag();
+        SceneManager.LoadScene("ViewSummary");
     }
 
     public void Btn_Profile_Page_Clicked()
