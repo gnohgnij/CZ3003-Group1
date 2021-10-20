@@ -15563,7 +15563,7 @@ GameObject:
   - component: {fileID: 1942068893}
   - component: {fileID: 1942068892}
   - component: {fileID: 1942068891}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sign board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15604,7 +15604,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.3717737}
+  m_Offset: {x: 0, y: -0.08127266}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -15615,7 +15615,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.3814526}
+  m_Size: {x: 3, y: 4.0838156}
   m_EdgeRadius: 0
 --- !u!114 &1942068893
 MonoBehaviour:
@@ -15669,8 +15669,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -353523665
-  m_SortingLayer: 2
+  m_SortingLayerID: 46415759
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -315583168644363856, guid: 2529f58c0f0f4784d925363eac539680,
     type: 3}
@@ -15776,7 +15776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019534749}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.534188, y: -4.29, z: -1.5}
+  m_LocalPosition: {x: 11.06, y: -5.09, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15794,8 +15794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2417f9ca33bc24fb3504f969ddf1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 243271335}
-  leftLimit: 0
-  rightLimit: 0
-  topLimit: 0
-  bottomLimit: 0
+  target: {fileID: 243271335}
+  smoothFactor: 3
+  minValues: {x: -11.06, y: -8.01, z: -10}
+  maxValues: {x: 11.06, y: 5.97, z: -10}

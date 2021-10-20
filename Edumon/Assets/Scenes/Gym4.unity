@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 239973018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 4.07, y: -3.98, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -220,11 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2417f9ca33bc24fb3504f969ddf1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 300620753}
-  leftLimit: 0
-  rightLimit: 0
-  topLimit: 0
-  bottomLimit: 0
+  target: {fileID: 300620753}
+  smoothFactor: 3
+  minValues: {x: -4.07, y: -3.98, z: -10}
+  maxValues: {x: 4.07, y: 3.98, z: -10}
 --- !u!1 &300620751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,7 +1687,7 @@ GameObject:
   - component: {fileID: 1408008178}
   - component: {fileID: 1408008177}
   - component: {fileID: 1408008176}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sign board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1729,7 +1728,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.3819396}
+  m_Offset: {x: 0, y: -0.05043578}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1740,7 +1739,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.3611207}
+  m_Size: {x: 3, y: 4.0241284}
   m_EdgeRadius: 0
 --- !u!114 &1408008178
 MonoBehaviour:
@@ -1794,8 +1793,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -353523665
-  m_SortingLayer: 2
+  m_SortingLayerID: 46415759
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -315583168644363856, guid: 2529f58c0f0f4784d925363eac539680,
     type: 3}
@@ -3031,7 +3030,7 @@ GameObject:
   - component: {fileID: 1971308242}
   - component: {fileID: 1971308244}
   - component: {fileID: 1971308243}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Gym Leader
   m_TagString: Untagged
   m_Icon: {fileID: 0}

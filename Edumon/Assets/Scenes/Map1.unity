@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131691611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.36, y: -0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -217,12 +217,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 131691611}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92811e61b3eb3f342a738f8ca618974b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a2417f9ca33bc24fb3504f969ddf1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAt: {fileID: 170919383}
-  boundX: 0.3
-  boundY: 0.15
+  target: {fileID: 170919383}
+  smoothFactor: 3
+  minValues: {x: -8.96, y: -3.99, z: -10}
+  maxValues: {x: 9.13, y: 11.97, z: -10}
 --- !u!1 &170919379
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +279,7 @@ MonoBehaviour:
   animator: {fileID: 170919380}
   solidObjectsLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 64
   interactableLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -391,7 +392,7 @@ GameObject:
   - component: {fileID: 334491763}
   - component: {fileID: 334491762}
   - component: {fileID: 334491761}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sign board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,8 +436,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -353523665
-  m_SortingLayer: 2
+  m_SortingLayerID: 46415759
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -315583168644363856, guid: 2529f58c0f0f4784d925363eac539680,
     type: 3}
@@ -498,7 +499,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.3406878}
+  m_Offset: {x: 0, y: -0.076319456}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -509,7 +510,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.4436244}
+  m_Size: {x: 3, y: 4.0566716}
   m_EdgeRadius: 0
 --- !u!114 &334491763
 MonoBehaviour:
