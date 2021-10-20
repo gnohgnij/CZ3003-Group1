@@ -228,7 +228,10 @@ MonoBehaviour:
     m_Bits: 256
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
+  grassLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!95 &255054885
 Animator:
   serializedVersion: 3

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public LayerMask solidObjectsLayer;
     public LayerMask interactableLayer;
+    public LayerMask grassLayer;
 
 
     private void Awake(){
@@ -97,6 +98,8 @@ public class PlayerController : MonoBehaviour
         transform.position = targetPos;
 
         isMoving = false;
+
+        CheckForEncounters();
     }
 
     bool IsWalkable(Vector3 targetPos)
@@ -109,5 +112,14 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
-    
+    private void CheckForEncounters()
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, grassLayer ) != null)
+        {
+           if(Random.Range(1, 101) <= 10) //10% chance of encounter
+           {
+               Debug.Log("Random encounter occured");
+           } 
+        }
+    }
 }
