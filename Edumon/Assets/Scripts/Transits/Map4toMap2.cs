@@ -14,6 +14,8 @@ public class Map4toMap2 : MonoBehaviour
             PlayerPrefs.SetFloat("Saved4XPosition", xPos); 
             yPos = GameObject.FindGameObjectWithTag("Player").transform.position.y; // get player current position
             PlayerPrefs.SetFloat("Saved4YPosition", yPos - 1); 
+            PlayerPrefs.SetFloat("Saved2XPosition", (float)0);
+            PlayerPrefs.SetFloat("Saved2YPosition", (float)-6.573);
             Debug.Log(PlayerPrefs.GetFloat("Saved4XPosition"));
             Debug.Log(PlayerPrefs.GetFloat("Saved4YPosition"));
             SceneManager.LoadScene("Map2"); 

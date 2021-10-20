@@ -14,6 +14,8 @@ public class Map1toMap2 : MonoBehaviour
             PlayerPrefs.SetFloat("Saved1XPosition", xPos - 1); 
             yPos = GameObject.FindGameObjectWithTag("Player").transform.position.y; // get player current position
             PlayerPrefs.SetFloat("Saved1YPosition", yPos); 
+            PlayerPrefs.SetFloat("Saved2XPosition", (float)-21.24);
+            PlayerPrefs.SetFloat("Saved2YPosition", (float)-2.573);
             Debug.Log(PlayerPrefs.GetFloat("Saved1XPosition"));
             Debug.Log(PlayerPrefs.GetFloat("Saved1YPosition"));
             SceneManager.LoadScene("Map2"); 
