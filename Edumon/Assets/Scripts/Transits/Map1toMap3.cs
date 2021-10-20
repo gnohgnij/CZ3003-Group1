@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Map4toMap2 : MonoBehaviour
+public class Map1toMap3 : MonoBehaviour
 {
     private float xPos;
     private float yPos;
@@ -11,12 +11,12 @@ public class Map4toMap2 : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             xPos = GameObject.FindGameObjectWithTag("Player").transform.position.x; // get player current position
-            PlayerPrefs.SetFloat("Saved4XPosition", xPos); 
+            PlayerPrefs.SetFloat("Saved1XPosition", xPos); 
             yPos = GameObject.FindGameObjectWithTag("Player").transform.position.y; // get player current position
-            PlayerPrefs.SetFloat("Saved4YPosition", yPos - 1); 
-            Debug.Log(PlayerPrefs.GetFloat("Saved4XPosition"));
-            Debug.Log(PlayerPrefs.GetFloat("Saved4YPosition"));
-            SceneManager.LoadScene("Map2"); 
+            PlayerPrefs.SetFloat("Saved1YPosition", yPos + 1); 
+            Debug.Log(PlayerPrefs.GetFloat("Saved1XPosition"));
+            Debug.Log(PlayerPrefs.GetFloat("Saved1YPosition"));
+            SceneManager.LoadScene("Map3"); 
         }
     }
 }

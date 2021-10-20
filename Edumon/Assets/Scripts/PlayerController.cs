@@ -12,10 +12,33 @@ public class PlayerController : MonoBehaviour
     public LayerMask solidObjectsLayer;
     public LayerMask interactableLayer;
     public LayerMask grassLayer;
-
+    public WhereIsWaldoo whereIsWaldo;
 
     private void Awake(){
         animator = GetComponent<Animator>();
+
+        whereIsWaldo = GameObject.Find("WhereIsWaldo").GetComponent<WhereIsWaldoo>();
+
+        if (whereIsWaldo.mapNumber == 1) {
+            animator.transform.position = new Vector2(PlayerPrefs.GetFloat("Saved1XPosition"), PlayerPrefs.GetFloat("Saved1YPosition"));
+            PlayerPrefs.DeleteKey("Saved4XPosition");
+            PlayerPrefs.DeleteKey("Saved4YPosition");
+        }
+        else if (whereIsWaldo.mapNumber == 2) {
+            PlayerPrefs.DeleteKey("Saved3XPosition");
+            PlayerPrefs.DeleteKey("Saved3YPosition");
+            animator.transform.position = new Vector2(PlayerPrefs.GetFloat("Saved2XPosition"), PlayerPrefs.GetFloat("Saved2YPosition"));
+        }
+        else if (whereIsWaldo.mapNumber == 3) {
+            PlayerPrefs.DeleteKey("Saved2XPosition");
+            PlayerPrefs.DeleteKey("Saved2YPosition");
+            animator.transform.position = new Vector2(PlayerPrefs.GetFloat("Saved3XPosition"), PlayerPrefs.GetFloat("Saved3YPosition"));
+        }
+        else if (whereIsWaldo.mapNumber == 4) {
+            PlayerPrefs.DeleteKey("Saved1XPosition");
+            PlayerPrefs.DeleteKey("Saved1YPosition");
+            animator.transform.position = new Vector2(PlayerPrefs.GetFloat("Saved4XPosition"), PlayerPrefs.GetFloat("Saved4YPosition"));
+        }
     }
 
     void Update()

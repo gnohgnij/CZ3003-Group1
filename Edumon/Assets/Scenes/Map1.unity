@@ -285,6 +285,7 @@ MonoBehaviour:
   grassLayer:
     serializedVersion: 2
     m_Bits: 128
+  whereIsWaldo: {fileID: 0}
 --- !u!212 &170919382
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -794,8 +795,9 @@ GameObject:
   - component: {fileID: 641349207}
   - component: {fileID: 641349206}
   - component: {fileID: 641349205}
+  - component: {fileID: 641349208}
   m_Layer: 0
-  m_Name: Map3Portal
+  m_Name: Map2Portal
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -862,6 +864,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &641349208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641349204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7420df49041543547be36e03b0107236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &658898369
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,8 +887,9 @@ GameObject:
   - component: {fileID: 658898372}
   - component: {fileID: 658898371}
   - component: {fileID: 658898370}
+  - component: {fileID: 658898373}
   m_Layer: 0
-  m_Name: Map2Portal
+  m_Name: Map3Portal
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -941,6 +956,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &658898373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658898369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497a9ffd3c1221343946809d64f4861d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &741725655
 GameObject:
   m_ObjectHideFlags: 0
@@ -15831,6 +15858,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2048650627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2048650629}
+  - component: {fileID: 2048650628}
+  m_Layer: 0
+  m_Name: WhereIsWaldo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2048650628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048650627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbedaf8abc0b4d242bb1bc71f526c7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapNumber: 1
+--- !u!4 &2048650629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048650627}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8665797, y: 2.7067938, z: -7.89579}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2089359734
 GameObject:
