@@ -1,9 +1,8 @@
 using System;
 
 [Serializable]
-public class QuestionResult
+public class AssignmentResult
 {
     public string status;
-    public string data;
     public string message;
 }

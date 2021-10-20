@@ -10,32 +10,35 @@ public class TeacherHomeController : MonoBehaviour
 
     void Awake()
     {
-        if (StateManager.teacherProfileStatusTag)
+        if (StateManager.teacherHomeStatusTag)
         {
-            StatusMessage.text = StateManager.teacherProfileStatusMessage;
+            StatusMessage.text = StateManager.teacherHomeStatusMessage;
             StatusMessage.gameObject.SetActive(true);
         }
     }
 
-    public void Btn_Create_New_Question_Clicked()
+    public void Btn_Set_Assignment_Clicked()
     {
-        StateManager.teacherProfileStatusTag = false;
-        StatusMessage.gameObject.SetActive(false);
-        SceneManager.LoadScene("CreateNewQuestion");
+        DisableTag();
+        SceneManager.LoadScene("SetAssignment");
     }
 
     public void Btn_Profile_Page_Clicked()
     {
-        StateManager.teacherProfileStatusTag = false;
-        StatusMessage.gameObject.SetActive(false);
+        DisableTag();
         SceneManager.LoadScene("TeacherProfile");
     }
 
     public void Btn_Logout_Clicked()
     {
-        StateManager.teacherProfileStatusTag = false;
-        StatusMessage.gameObject.SetActive(false);
+        DisableTag();
         StateManager.user = null;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void DisableTag()
+    {
+        StateManager.teacherProfileStatusTag = false;
+        StatusMessage.gameObject.SetActive(false);
     }
 }

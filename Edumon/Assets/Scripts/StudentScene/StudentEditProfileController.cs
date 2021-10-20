@@ -201,8 +201,9 @@ public class StudentEditProfileController : MonoBehaviour
                             if (authResult.error.code == 0)
                             {
                                 StateManager.user.password = _password;
-                                WarningText.text = "Successfully change username, studentId,\nemail, and password";
-                                WarningText.gameObject.SetActive(true);
+                                StateManager.studentProfileStatusTag = true;
+                                StateManager.studentProfileStatusMessage = "Successfully change username, studentId,\nemail, and password";
+                                SceneManager.LoadScene("StudentProfile");
                             }
                             else
                             {
@@ -215,8 +216,9 @@ public class StudentEditProfileController : MonoBehaviour
                 }
                 else
                 {
-                    WarningText.text = "Successfully change username, studentId, and email";
-                    WarningText.gameObject.SetActive(true);
+                    StateManager.studentProfileStatusTag = true;
+                    StateManager.studentProfileStatusMessage = "Successfully change username, studentId, and email";
+                    SceneManager.LoadScene("StudentProfile");
                 }
             }
         }

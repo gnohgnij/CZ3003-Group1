@@ -1447,7 +1447,7 @@ GameObject:
   - component: {fileID: 716471233}
   - component: {fileID: 716471232}
   m_Layer: 0
-  m_Name: CreateQuestionBtn
+  m_Name: NextQuestionBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2843,7 +2843,7 @@ GameObject:
   - component: {fileID: 1749743515}
   - component: {fileID: 1749743514}
   m_Layer: 0
-  m_Name: Text
+  m_Name: NextQuestionBtnText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2901,7 +2901,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Create Question
+  m_Text: 'Next Question
 
 '
 --- !u!222 &1749743515
@@ -3249,6 +3249,7 @@ MonoBehaviour:
   Option5InputField: {fileID: 517244619}
   AnswerInputField: {fileID: 508676277}
   WarningText: {fileID: 379748264}
+  NextQuestionBtnText: {fileID: 1749743514}
 --- !u!4 &1898305822
 Transform:
   m_ObjectHideFlags: 0

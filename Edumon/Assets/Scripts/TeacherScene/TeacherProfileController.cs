@@ -8,12 +8,18 @@ public class TeacherProfileController : MonoBehaviour
 {
     public Text username;
     public Text email;
+    public Text Message;
 
     // Start is called before the first frame update
     void Start()
     {
         username.text = StateManager.user.username;
         email.text = StateManager.user.email;
+        if (StateManager.teacherProfileStatusTag)
+        {
+            Message.gameObject.SetActive(true);
+            Message.text = StateManager.teacherProfileStatusMessage;
+        }
     }
 
     // Update is called once per frame
