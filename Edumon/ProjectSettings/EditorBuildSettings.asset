@@ -74,4 +74,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gym5.unity
     guid: 3b7771989d6514d4d9b4a38079f2f5d0
+  - enabled: 1
+    path: Assets/Scenes/EditQuestion.unity
+    guid: d31fd26422858f2418ed8280c594bf49
   m_configObjects: {}
