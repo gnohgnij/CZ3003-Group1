@@ -282,10 +282,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Btn_ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 814019390}
+        m_TargetAssemblyTypeName: EditGymQuestionsController, Assembly-CSharp
+        m_MethodName: Btn_Edit_Gym_3_Questions_Clicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -415,10 +415,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Btn_ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 814019390}
+        m_TargetAssemblyTypeName: EditGymQuestionsController, Assembly-CSharp
+        m_MethodName: Btn_Edit_Gym_2_Questions_Clicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -614,10 +614,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Btn_ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 814019390}
+        m_TargetAssemblyTypeName: EditGymQuestionsController, Assembly-CSharp
+        m_MethodName: Btn_Edit_Gym_4_Questions_Clicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -880,10 +880,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Btn_ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 814019390}
+        m_TargetAssemblyTypeName: EditGymQuestionsController, Assembly-CSharp
+        m_MethodName: Btn_Edit_Gym_5_Questions_Clicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1354,10 +1354,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Btn_ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 814019390}
+        m_TargetAssemblyTypeName: EditGymQuestionsController, Assembly-CSharp
+        m_MethodName: Btn_Edit_Gym_1_Questions_Clicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

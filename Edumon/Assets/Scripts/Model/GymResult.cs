@@ -1,9 +1,9 @@
 using System;
 
 [Serializable]
-public class QuestionResult
+public class GymResult
 {
     public string status;
-    public string data;
+    public Gym data;
     public string message;
 }

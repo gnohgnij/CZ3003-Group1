@@ -23,4 +23,9 @@ public class StateManager : MonoBehaviour
     public static int questionIndex = 0;
     public static int assignmentQuestionSize = 0;
     public static Question[] assignmentQuestions;
+
+    public static string[] gymId = new string[] { "2AcLYXxjcwUH8M6pS4kZ", "kz6hrs41oWb7tRHalQei", "Ma8MvuUvTeEHwLr7cPKd", "CJlAjApLDPzKPDZAYLVk", "O2zaxmG5w0wWnH5UkjlV" };
+    public static int gymQustionIndex = 0;
+    public static int gymQuestionsSize = 0;
+    public static Question[] gymQuestions;
 }

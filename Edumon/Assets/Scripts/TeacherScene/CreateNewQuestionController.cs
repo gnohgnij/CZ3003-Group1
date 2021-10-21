@@ -198,7 +198,7 @@ public class CreateNewQuestionController : MonoBehaviour
                 }
                 else
                 {
-                    QuestionResult questionResult = JsonUtility.FromJson<QuestionResult>(questionUwr.downloadHandler.text);
+                    QuestionPostResult questionResult = JsonUtility.FromJson<QuestionPostResult>(questionUwr.downloadHandler.text);
                     if (questionResult.status == "success")
                     {
                         StateManager.teacherProfileStatusTag = true;
