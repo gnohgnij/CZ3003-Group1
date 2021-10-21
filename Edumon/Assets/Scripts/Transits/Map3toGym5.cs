@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Map4toMap2 : MonoBehaviour
+public class Map3toGym5 : MonoBehaviour
 {
     private float xPos;
     private float yPos;
-
+    
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             xPos = GameObject.FindGameObjectWithTag("Player").transform.position.x; // get player current position
-            PlayerPrefs.SetFloat("Saved4XPosition", xPos); 
+            PlayerPrefs.SetFloat("Saved3XPosition", xPos); 
             yPos = GameObject.FindGameObjectWithTag("Player").transform.position.y; // get player current position
-            PlayerPrefs.SetFloat("Saved4YPosition", yPos - 1); 
-            PlayerPrefs.SetFloat("Saved2XPosition", (float)0);
-            PlayerPrefs.SetFloat("Saved2YPosition", (float)-2.44);
-            Debug.Log(PlayerPrefs.GetFloat("Saved4XPosition"));
-            Debug.Log(PlayerPrefs.GetFloat("Saved4YPosition"));
-            SceneManager.LoadScene("Map2"); 
+            PlayerPrefs.SetFloat("Saved3YPosition", yPos - 1); 
+            Debug.Log(PlayerPrefs.GetFloat("Saved3XPosition"));
+            Debug.Log(PlayerPrefs.GetFloat("Saved3YPosition"));
+            SceneManager.LoadScene("Gym5"); 
         }
     }
 }
