@@ -5305,7 +5305,7 @@ MonoBehaviour:
     m_Bits: 512
   grassLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   whereIsWaldo: {fileID: 0}
 --- !u!212 &1442712510
 SpriteRenderer:

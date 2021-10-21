@@ -225,13 +225,14 @@ MonoBehaviour:
   animator: {fileID: 255054885}
   solidObjectsLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 64
   interactableLayer:
     serializedVersion: 2
     m_Bits: 512
   grassLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  whereIsWaldo: {fileID: 0}
 --- !u!95 &255054885
 Animator:
   serializedVersion: 3
