@@ -32,4 +32,9 @@ public class StudentHomeController : MonoBehaviour
     {
         SceneManager.LoadScene("Map1");
     }
+
+    public void Btn_View_Leaderboard_Clicked()
+    {
+        SceneManager.LoadScene("Leaderboard");
+    }
 }

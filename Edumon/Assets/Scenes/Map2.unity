@@ -238,7 +238,7 @@ GameObject:
   m_Layer: 0
   m_Name: Map4Portal
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -297,7 +297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172633231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.21, y: -8.64, z: -4.535418}
+  m_LocalPosition: {x: -0.28, y: -4.67, z: -4.535418}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -18280,7 +18280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398836524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.11, y: 0.02, z: -10}
+  m_LocalPosition: {x: 15.07, y: 27.01, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -18299,9 +18299,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 759650562}
-  smoothFactor: 2
+  smoothFactor: 3
   minValues: {x: -15.11, y: 0.02, z: -10}
-  maxValues: {x: 15.02, y: 26.7, z: -10}
+  maxValues: {x: 15.07, y: 27.01, z: -10}
 --- !u!1 &1438882754
 GameObject:
   m_ObjectHideFlags: 0
