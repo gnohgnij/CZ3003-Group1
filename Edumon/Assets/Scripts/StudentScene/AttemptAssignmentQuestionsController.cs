@@ -157,7 +157,7 @@ public class AttemptAssignmentQuestionsController : MonoBehaviour
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(attemptJsonBody);
 
 
-        string attemptUrl = StateManager.localhostUrl + "attempt";
+        string attemptUrl = StateManager.apiUrl + "attempt";
         var attemptUwr = new UnityWebRequest(attemptUrl, "POST");
 
         attemptUwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);

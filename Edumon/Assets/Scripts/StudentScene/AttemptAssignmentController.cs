@@ -46,7 +46,7 @@ public class AttemptAssignmentController : MonoBehaviour
             AssignmentGetResult assignmentResult = null;
 
             // Retrive Assignment Data
-            string assignmentUrl = StateManager.localhostUrl + "assignment/" + _assignmentId;
+            string assignmentUrl = StateManager.apiUrl + "assignment/" + _assignmentId;
 
             UnityWebRequest assignmentUwr = UnityWebRequest.Get(assignmentUrl);
             yield return assignmentUwr.SendWebRequest();
@@ -99,7 +99,7 @@ public class AttemptAssignmentController : MonoBehaviour
             {
                 for (int i = 0; i < StateManager.assignmentQuestionSize; i++)
                 {
-                    string questionUrl = StateManager.localhostUrl + "question/" + assignmentResult.data.question_list[i];
+                    string questionUrl = StateManager.apiUrl + "question/" + assignmentResult.data.question_list[i];
 
                     UnityWebRequest questionUwr = UnityWebRequest.Get(questionUrl);
                     yield return questionUwr.SendWebRequest();

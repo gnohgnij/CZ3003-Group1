@@ -88,7 +88,8 @@ public class CreateAssignmentController : MonoBehaviour
             try
             {
                 deadlineDateTime = new System.DateTime(int.Parse(yyyy), int.Parse(MM), int.Parse(dd),
-                int.Parse(HH), int.Parse(mm), int.Parse(ss));
+                int.Parse(HH), int.Parse(mm), int.Parse(ss), System.DateTimeKind.Local);
+                deadlineDateTime = deadlineDateTime.AddHours(-8);
             }
             catch (System.ArgumentOutOfRangeException)
             {
@@ -152,18 +153,24 @@ public class CreateAssignmentController : MonoBehaviour
                     if (!stop)
                     {
                         // Post Assignment
-                        string question_list = question_list_array[0];
+                        string question_list = "[\"" + question_list_array[0] + "\"";
                         for (int j = 1; j < question_list_array.Length; j++)
                         {
-                            question_list += "," + question_list_array[j];
+                            question_list += ", \"" + question_list_array[j] + "\"";
                         }
+                        question_list += "]";
 
-                        string assignmentUrl = StateManager.localhostUrl + "assignment";
-                        WWWForm assignmentForm = new WWWForm();
-                        assignmentForm.AddField("question_list", question_list);
-                        assignmentForm.AddField("deadline", deadline);
+                        string assignmentJsonBody = "{ \"deadline\": \"" + deadline + "\", ";
+                        assignmentJsonBody += "\"question_list\": " + question_list + "}";
+                        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(assignmentJsonBody);
 
-                        UnityWebRequest assignmentUwr = UnityWebRequest.Post(assignmentUrl, assignmentForm);
+                        string assignmentUrl = StateManager.apiUrl + "assignment";
+                        var assignmentUwr = new UnityWebRequest(assignmentUrl, "POST");
+
+                        assignmentUwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+                        assignmentUwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+                        assignmentUwr.SetRequestHeader("Content-Type", "application/json");
+
                         yield return assignmentUwr.SendWebRequest();
 
                         if (assignmentUwr.result == UnityWebRequest.Result.ConnectionError)
