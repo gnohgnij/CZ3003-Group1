@@ -77,4 +77,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EditQuestion.unity
     guid: d31fd26422858f2418ed8280c594bf49
+  - enabled: 1
+    path: Assets/Scenes/AttemptAssignment.unity
+    guid: f7fc488954bc1ce43b1413946320b85a
+  - enabled: 1
+    path: Assets/Scenes/AttemptAssignmentQuestions.unity
+    guid: 96bc0f25d7004d148a8dbdcca9d114ed
   m_configObjects: {}

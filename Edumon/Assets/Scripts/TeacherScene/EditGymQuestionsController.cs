@@ -157,7 +157,7 @@ public class EditGymQuestionsController : MonoBehaviour
                     }
                 }
             }
-            SceneManager.LoadScene("EditQuestion");
+            if (!stop) SceneManager.LoadScene("EditQuestion");
         }
     }
 }

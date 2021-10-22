@@ -26,6 +26,9 @@ public class TeacherHomeController : MonoBehaviour
     public void Btn_Set_Assignment_Clicked()
     {
         DisableTag();
+        StateManager.questionIndex = 0;
+        StateManager.assignmentQuestionSize = 0;
+        StateManager.assignmentQuestions = null;
         SceneManager.LoadScene("SetAssignment");
     }
     

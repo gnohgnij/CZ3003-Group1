@@ -173,7 +173,7 @@ public class CreateAssignmentController : MonoBehaviour
                         }
                         else
                         {
-                            AssignmentResult assignmentResult = JsonUtility.FromJson<AssignmentResult>(assignmentUwr.downloadHandler.text);
+                            AssignmentPostResult assignmentResult = JsonUtility.FromJson<AssignmentPostResult>(assignmentUwr.downloadHandler.text);
                             if (assignmentResult.status == "success")
                             {
                                 StateManager.questionIndex = 0;
@@ -181,7 +181,7 @@ public class CreateAssignmentController : MonoBehaviour
                                 StateManager.assignmentQuestions = null;
 
                                 StateManager.teacherHomeStatusTag = true;
-                                StateManager.teacherHomeStatusMessage = "Successfully created assignment";
+                                StateManager.teacherHomeStatusMessage = "Successfully created assignment\nAssignment Id: " + assignmentResult.data;
                                 SceneManager.LoadScene("TeacherHome");
                             }
                             else
