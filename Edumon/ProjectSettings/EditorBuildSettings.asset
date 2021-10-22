@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Gym3.unity
     guid: a307bc586cae1d046b069a51d9ae9a19
   - enabled: 1
-    path: Assets/Scenes/StudentHome.unity
+    path: Assets/Scenes/WorldSelection.unity
     guid: 473ac8b67c1563245a2924a89a649111
   - enabled: 1
     path: Assets/Scenes/StudentProfile.unity
@@ -83,4 +83,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AttemptAssignmentQuestions.unity
     guid: 96bc0f25d7004d148a8dbdcca9d114ed
+  - enabled: 1
+    path: Assets/Scenes/StudentHome.unity
+    guid: e47a963478a41ff4b86ecc63ce719303
   m_configObjects: {}

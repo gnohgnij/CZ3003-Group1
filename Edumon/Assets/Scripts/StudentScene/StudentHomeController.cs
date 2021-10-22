@@ -46,7 +46,7 @@ public class StudentHomeController : MonoBehaviour
     public void Btn_Enter_World_Clicked()
     {
         Disable_Tag();
-        SceneManager.LoadScene("Map1");
+        SceneManager.LoadScene("WorldSelection");
     }
 
     public void Btn_View_Leaderboard_Clicked()
