@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class Leaderboard : MonoBehaviour
+public class MCQ : MonoBehaviour
 {
-    private const string URL = "https://cz3003-edumon.herokuapp.com/attempt";
+    private const string URL = "https://cz3003-edumon.herokuapp.com/question";
+    public Button submitButton;
 
     public void GenerateRequest()
     {
@@ -25,8 +26,21 @@ public class Leaderboard : MonoBehaviour
             }
             else
             {
-                Debug.Log(request.downloadHandler.text);
+                Debug.Log(UnityWebRequest.Get(url+"/SM3AlYWKEDIrOo02UJtl"));
             }
         }
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        submitButton.onClick.AddListener(TaskOnClick);
+        GenerateRequest();
+    }
+
+    // Update is called once per frame
+    void TaskOnClick()
+    {
+        //Output this to console when submitButton is clicked
+        GenerateRequest();
     }
 }
