@@ -98,7 +98,7 @@ public class EditGymQuestionsController : MonoBehaviour
         GymResult gymResult = null;
 
         // get gym data first
-        string gymUrl = StateManager.localhostUrl + "gym/" + StateManager.gymId[_index];
+        string gymUrl = StateManager.apiUrl + "gym/" + StateManager.gymId[_index];
 
         UnityWebRequest gymUwr = UnityWebRequest.Get(gymUrl);
         yield return gymUwr.SendWebRequest();
@@ -131,7 +131,7 @@ public class EditGymQuestionsController : MonoBehaviour
         {
             for (int i = 0; i < StateManager.gymQuestions.Length; i++)
             {
-                string questionUrl = StateManager.localhostUrl + "question/" + gymResult.data.question_list[i];
+                string questionUrl = StateManager.apiUrl + "question/" + gymResult.data.question_list[i];
 
                 UnityWebRequest questionUwr = UnityWebRequest.Get(questionUrl);
                 yield return questionUwr.SendWebRequest();
