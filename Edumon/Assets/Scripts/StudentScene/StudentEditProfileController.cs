@@ -53,41 +53,6 @@ public class StudentEditProfileController : MonoBehaviour
             bool stop = false;
             AuthResult authResult = null;
 
-            // Change username and studentId
-            //string changeUsernameUrl = StateManager.localhostUrl + "account/username";
-            string changeUsernameUrl = StateManager.apiUrl + "account/username";
-            WWWForm usernameForm = new WWWForm();
-            usernameForm.AddField("id", StateManager.user.uid);
-            usernameForm.AddField("username", _username);
-            usernameForm.AddField("studentId", _studentId);
-
-            UnityWebRequest usernameUwr = UnityWebRequest.Post(changeUsernameUrl, usernameForm);
-            yield return usernameUwr.SendWebRequest();
-
-            if (usernameUwr.result == UnityWebRequest.Result.ConnectionError)
-            {
-                WarningText.text = "Network Error";
-                WarningText.gameObject.SetActive(true);
-            }
-            else
-            {
-                UserResult userResult = JsonUtility.FromJson<UserResult>(usernameUwr.downloadHandler.text);
-                if (userResult.status == "success")
-                {
-                    StateManager.user.username = _username;
-                    StateManager.user.studentid = _studentId;
-                }
-                else
-                {
-                    WarningText.text = "Unable to change username/studentId. Please contact the admin";
-                    WarningText.gameObject.SetActive(true);
-                    stop = true;
-                }
-
-            }
-
-
-
             // Login to change email/password
             if (!stop)
             {
@@ -219,6 +184,44 @@ public class StudentEditProfileController : MonoBehaviour
                     StateManager.studentProfileStatusTag = true;
                     StateManager.studentProfileStatusMessage = "Successfully change username, studentId, and email";
                     SceneManager.LoadScene("StudentProfile");
+                }
+            }
+
+
+            if (!stop)
+            {
+                // Change username, studentId, and email
+                //string changeUsernameUrl = StateManager.localhostUrl + "account/username";
+                string changeUsernameUrl = StateManager.apiUrl + "account/username";
+                WWWForm usernameForm = new WWWForm();
+                usernameForm.AddField("id", StateManager.user.uid);
+                usernameForm.AddField("username", _username);
+                usernameForm.AddField("studentId", _studentId);
+                usernameForm.AddField("email", StateManager.user.email);
+
+                UnityWebRequest usernameUwr = UnityWebRequest.Post(changeUsernameUrl, usernameForm);
+                yield return usernameUwr.SendWebRequest();
+
+                if (usernameUwr.result == UnityWebRequest.Result.ConnectionError)
+                {
+                    WarningText.text = "Network Error";
+                    WarningText.gameObject.SetActive(true);
+                }
+                else
+                {
+                    UserResult userResult = JsonUtility.FromJson<UserResult>(usernameUwr.downloadHandler.text);
+                    if (userResult.status == "success")
+                    {
+                        StateManager.user.username = _username;
+                        StateManager.user.studentid = _studentId;
+                    }
+                    else
+                    {
+                        WarningText.text = "Unable to change username/studentId/email. Please contact the admin";
+                        WarningText.gameObject.SetActive(true);
+                        stop = true;
+                    }
+
                 }
             }
         }

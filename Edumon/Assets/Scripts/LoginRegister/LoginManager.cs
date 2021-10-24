@@ -69,7 +69,7 @@ public class LoginManager : MonoBehaviour
                     else
                     {
                         StateManager.user = userResult.data;
-                        StateManager.user.email = _email;
+                        //StateManager.user.email = _email;
                         StateManager.user.password = _password;
                         if (StateManager.user.type == "teacher")
                         {

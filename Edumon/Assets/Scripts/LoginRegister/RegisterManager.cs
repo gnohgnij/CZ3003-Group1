@@ -111,6 +111,7 @@ public class RegisterManager : MonoBehaviour
                     form2.AddField("id", authResult.localId);
                     form2.AddField("username", _username);
                     form2.AddField("type", accountType);
+                    form2.AddField("email", _email);
                     if (accountType == "student")
                     {
                         form2.AddField("studentId", _studentId);
