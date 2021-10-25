@@ -11,11 +11,11 @@ public class Map3toGym5 : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             xPos = GameObject.FindGameObjectWithTag("Player").transform.position.x; // get player current position
-            PlayerPrefs.SetFloat("Saved3XPosition", xPos); 
+            PlayerPrefs.SetFloat("Saved1XPosition", xPos); 
             yPos = GameObject.FindGameObjectWithTag("Player").transform.position.y; // get player current position
-            PlayerPrefs.SetFloat("Saved3YPosition", yPos - 1); 
-            Debug.Log(PlayerPrefs.GetFloat("Saved3XPosition"));
-            Debug.Log(PlayerPrefs.GetFloat("Saved3YPosition"));
+            PlayerPrefs.SetFloat("Saved1YPosition", yPos - 1); 
+            Debug.Log(PlayerPrefs.GetFloat("Saved1XPosition"));
+            Debug.Log(PlayerPrefs.GetFloat("Saved1YPosition"));
             SceneManager.LoadScene("Gym5"); 
         }
     }

@@ -8,7 +8,7 @@ public class Gym5toMap3 : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             Debug.Log("Here");
-            SceneManager.LoadScene("Map3"); 
+            SceneManager.LoadScene("Map1"); 
         }
     }
 }
