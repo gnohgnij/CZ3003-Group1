@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState {FreeRoam, Battle, Dialog}
+public enum GameState {FreeRoam, Dialog, RandomEncounter}
 
 public class GameController : MonoBehaviour
 {
@@ -21,6 +21,17 @@ public class GameController : MonoBehaviour
             if(state == GameState.Dialog)
                 state = GameState.FreeRoam;
         };
+
+        RandomEncountersManager.Instance.OnShowEncounter += () =>
+        {
+            state = GameState.RandomEncounter;
+        };
+
+        RandomEncountersManager.Instance.OnCloseEncouter += () =>
+        {
+            if(state == GameState.RandomEncounter)
+                state = GameState.FreeRoam;
+        };
     }
 
     private void Update()
@@ -33,6 +44,11 @@ public class GameController : MonoBehaviour
         else if(state == GameState.Dialog)
         {
             DialogManager.Instance.HandleUpdate();
+        }
+
+        else if(state == GameState.RandomEncounter)
+        {
+            RandomEncountersManager.Instance.HandleUpdate();
         }
     }
 }

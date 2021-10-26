@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask interactableLayer;
     public LayerMask grassLayer;
     public WhereIsWaldoo whereIsWaldo;
+    [SerializeField] Dialog dialog;
 
     private void Awake(){
         animator = GetComponent<Animator>();
@@ -139,9 +141,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 0.2f, grassLayer ) != null)
         {
-           if(Random.Range(1, 101) <= 10) //10% chance of encounter
+           if(UnityEngine.Random.Range(1, 101) <= 10) //10% chance of encounter
            {
                Debug.Log("Random encounter occured");
+               StartCoroutine(RandomEncountersManager.Instance.ShowEncounter(dialog));
            } 
         }
     }

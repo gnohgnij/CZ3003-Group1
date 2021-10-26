@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System;
-public class DialogManager : MonoBehaviour
+using UnityEngine.UI;
+
+public class RandomEncountersManager : MonoBehaviour
 {
     [SerializeField] GameObject dialogBox;
     [SerializeField] Text dialogText;
     [SerializeField] int lettersPerSecond;
 
-    public event Action OnShowDialog;
-    public event Action OnCloseDialog;
+    public event Action OnShowEncounter;
+    public event Action OnCloseEncouter;
 
-    public static DialogManager Instance {get; private set; }
+    public static RandomEncountersManager Instance {get; private set; }
 
     private void Awake()
     {
@@ -20,21 +21,24 @@ public class DialogManager : MonoBehaviour
     }
 
     Dialog dialog;
-    int currentLine = 0;
     bool isTyping;
 
-    public IEnumerator ShowDialog(Dialog dialog)
+    public IEnumerator ShowEncounter(Dialog dialog)
     {
         yield return new WaitForEndOfFrame();
 
-        OnShowDialog?.Invoke();
+        OnShowEncounter?.Invoke();
 
         this.dialog = dialog;
         dialogBox.SetActive(true);
-        StartCoroutine(TypeDialog(dialog.Lines[0]));
+
+        int count = dialog.Lines.Count;
+        int num = UnityEngine.Random.Range(0, count);
+
+        StartCoroutine(TypeEncounter(dialog.Lines[num]));
     }
 
-    public IEnumerator TypeDialog(string line)
+    public IEnumerator TypeEncounter(string line)
     {
         isTyping = true;
         dialogText.text = "";
@@ -50,17 +54,8 @@ public class DialogManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && !isTyping)
         {
-            ++currentLine;
-            if(currentLine < dialog.Lines.Count){
-                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
-            }
-            else
-            {
-                currentLine = 0;
-                dialogBox.SetActive(false);
-                OnCloseDialog?.Invoke();
-            }
+            dialogBox.SetActive(false);
+            OnCloseEncouter?.Invoke();
         }
     }
-
 }
