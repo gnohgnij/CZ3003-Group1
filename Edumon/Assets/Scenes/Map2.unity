@@ -330,7 +330,7 @@ GameObject:
   m_Layer: 0
   m_Name: GymPortal
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -380,7 +380,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0875476, y: 0.376153}
+  m_Offset: {x: -0.00434044, y: -0.008415222}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -391,7 +391,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1750952, y: 0.24769402}
+  m_Size: {x: 0.991319, y: 0.25450134}
   m_EdgeRadius: 0
 --- !u!4 &308311222
 Transform:
@@ -401,7 +401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 308311218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.63, y: 23.69, z: -2.2380037}
+  m_LocalPosition: {x: -0.446, y: 23.383, z: -2.2380037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -710,6 +710,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   whereIsWaldo: {fileID: 0}
+  dialog:
+    lines: []
 --- !u!1 &843438288
 GameObject:
   m_ObjectHideFlags: 0
