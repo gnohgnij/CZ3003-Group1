@@ -1080,7 +1080,7 @@ MonoBehaviour:
   animator: {fileID: 243271337}
   solidObjectsLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   interactableLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -1088,6 +1088,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   whereIsWaldo: {fileID: 0}
+  dialog:
+    lines:
+    - The implementation phase is the 3rd phase of the Software Development Lifecycle
+    - Developers start coding according to the requirements and the design discussed
+      in previous phases.
+    - This cycle of development is repeated until the requirements are met.
 --- !u!95 &243271337
 Animator:
   serializedVersion: 3
@@ -5569,6 +5575,7 @@ GameObject:
   - component: {fileID: 799675737}
   - component: {fileID: 799675736}
   - component: {fileID: 799675735}
+  - component: {fileID: 799675738}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -5618,6 +5625,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &799675738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799675734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b7029dd63410e4aa38ddfa4f9a78bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogBox: {fileID: 586052533}
+  dialogText: {fileID: 237154099}
+  lettersPerSecond: 45
 --- !u!1 &1068966640
 GameObject:
   m_ObjectHideFlags: 0

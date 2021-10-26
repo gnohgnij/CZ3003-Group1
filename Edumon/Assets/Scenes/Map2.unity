@@ -702,7 +702,7 @@ MonoBehaviour:
   animator: {fileID: 759650564}
   solidObjectsLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 64
   interactableLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -711,7 +711,11 @@ MonoBehaviour:
     m_Bits: 128
   whereIsWaldo: {fileID: 0}
   dialog:
-    lines: []
+    lines:
+    - The design phase is the 2nd phase of the Software Development Lifecycle
+    - In the design phase, 1 or more designs are created to achieve the project results
+    - During the design phase, developers start the high-level design of the software
+      to deliver each requirement.
 --- !u!1 &843438288
 GameObject:
   m_ObjectHideFlags: 0
@@ -18391,6 +18395,7 @@ GameObject:
   - component: {fileID: 1631613497}
   - component: {fileID: 1631613496}
   - component: {fileID: 1631613495}
+  - component: {fileID: 1631613498}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -18440,6 +18445,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1631613498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631613494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b7029dd63410e4aa38ddfa4f9a78bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogBox: {fileID: 1438882754}
+  dialogText: {fileID: 1296944051}
+  lettersPerSecond: 45
 --- !u!850595691 &1881852124
 LightingSettings:
   m_ObjectHideFlags: 0
