@@ -16,7 +16,7 @@ public class Map4toGym4 : MonoBehaviour
             PlayerPrefs.SetFloat("Saved4YPosition", yPos); 
             Debug.Log(PlayerPrefs.GetFloat("Saved4XPosition"));
             Debug.Log(PlayerPrefs.GetFloat("Saved4YPosition"));
-            SceneManager.LoadScene("Gym3"); 
+            SceneManager.LoadScene("Gym4"); 
         }
     }
 }

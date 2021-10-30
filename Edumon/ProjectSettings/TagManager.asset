@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - WhereIsWaldo
+  - Map1Portal
+  - Map2Portal
+  - Map3Portal
+  - Map4Portal
   layers:
   - Default
   - TransparentFX
