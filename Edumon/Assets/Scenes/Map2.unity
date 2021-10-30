@@ -233,10 +233,10 @@ GameObject:
   m_Component:
   - component: {fileID: 172633234}
   - component: {fileID: 172633233}
-  - component: {fileID: 172633235}
   - component: {fileID: 172633232}
+  - component: {fileID: 172633235}
   m_Layer: 0
-  m_Name: Map4Portal
+  m_Name: Map3Portal
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 172633231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55e8e41e558f9144d8b0aa4dcc2959fb, type: 3}
+  m_Script: {fileID: 11500000, guid: da332c8022ff29f4faf1f9ad381fa134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &308311218

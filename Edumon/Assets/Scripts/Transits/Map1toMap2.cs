@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,15 +11,18 @@ public class Map1toMap2 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
-            xPos = GameObject.FindGameObjectWithTag("Player").transform.position.x; // get player current position
-            PlayerPrefs.SetFloat("Saved1XPosition", xPos - 1); 
-            yPos = GameObject.FindGameObjectWithTag("Player").transform.position.y; // get player current position
-            PlayerPrefs.SetFloat("Saved1YPosition", yPos); 
-            PlayerPrefs.SetFloat("Saved2XPosition", (float)-21.24);
-            PlayerPrefs.SetFloat("Saved2YPosition", (float)-2.573);
-            Debug.Log(PlayerPrefs.GetFloat("Saved1XPosition"));
-            Debug.Log(PlayerPrefs.GetFloat("Saved1YPosition"));
-            SceneManager.LoadScene("Map2"); 
+            // player will only move to Map2 if it's unlocked
+            if (Array.IndexOf(StateManager.user.unlocked_map, "Map2") > 0) {
+                xPos = GameObject.FindGameObjectWithTag("Player").transform.position.x; // get player current position
+                PlayerPrefs.SetFloat("Saved1XPosition", xPos - 1); 
+                yPos = GameObject.FindGameObjectWithTag("Player").transform.position.y; // get player current position
+                PlayerPrefs.SetFloat("Saved1YPosition", yPos); 
+                PlayerPrefs.SetFloat("Saved2XPosition", (float)-21.24);
+                PlayerPrefs.SetFloat("Saved2YPosition", (float)-2.573);
+                Debug.Log(PlayerPrefs.GetFloat("Saved1XPosition"));
+                Debug.Log(PlayerPrefs.GetFloat("Saved1YPosition"));
+                SceneManager.LoadScene("Map2");
+            }
         }
     }
 }
