@@ -20,3 +20,12 @@
 
 ## Subsystem Interface Design
 * View the full Susbsytem Interface Design Documentation [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%202/Subsystems%20Architectures.pdf)
+
+## Component Design
+* View the full Component Design Documentation [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%203/Component%20Design.pdf)
+
+* View the Component Diagram [here]()
+
+* View the Communication Diagrams [here]()
+
+* View the Data Persistence Diagram [here]()
