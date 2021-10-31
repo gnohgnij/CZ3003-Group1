@@ -29,3 +29,12 @@
   * View the Communication Diagrams [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%203/Diagrams/Component%20Diagram-Communication%20Diagrams.drawio.png)
 
   * View the Data Persistence Diagram [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%203/Diagrams/Data%20Persistence%20Diagram_v2.png)
+
+## Test Documentation
+* View the full Test Documentation [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%204/Test%20Documentation.pdf)
+
+  * View the White Box Testing Diagrams [here](https://github.com/gnohgnij/CZ3003-Group1/tree/main/Documentations/Lab%204/White%20Box%20Testing%20Diagrams)
+
+  * View the Black Box Testing Document [here]()
+
+  * View the Test Script for Load/Performance Testing [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%204/locust.py)
