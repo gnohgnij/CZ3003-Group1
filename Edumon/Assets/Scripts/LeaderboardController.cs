@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using System.Text.RegularExpressions;
 
 public class LeaderboardController : MonoBehaviour
 {
     private const string attemptURL = "https://cz3003-edumon.herokuapp.com/attempt/email/";
     private const string accountURL = "https://cz3003-edumon.herokuapp.com/account";
+    public Text emailAddresses;
+    public Text scores;
 
     void Start()
     {
@@ -69,6 +72,16 @@ public class LeaderboardController : MonoBehaviour
             else
             {
                 Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                emailAddresses.text += "\n" + pages[page] + "\n";
+                if (webRequest.downloadHandler.text.IndexOf("score") == -1){
+                    scores.text += "\n" + "NA" + "\n";
+                }
+                else{
+                    scores.text += "\n" + webRequest.downloadHandler.text[webRequest.downloadHandler.text.IndexOf("score") + 7] + "\n";
+                }
+                // scores.text += "\n" + Regex.Replace(webRequest.downloadHandler.text, '{.*?{', string.Empty) + "\n";
+                
+                // += "\n" + pages[page] + ":\nReceived: " + webRequest.downloadHandler.text;
                 string jsonString = webRequest.downloadHandler.text;
                 AttemptEmailResponse attemptEmailResponse = JsonUtility.FromJson<AttemptEmailResponse>(jsonString);
                 Attempt[] attempt = attemptEmailResponse.data;
