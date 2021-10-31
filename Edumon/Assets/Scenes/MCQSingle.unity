@@ -220,7 +220,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9eb374f496341669820cb21eec69cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  submitButton: {fileID: 1066733983}
+  QuestionText: {fileID: 1030659537}
+  ButtonA: {fileID: 1403746137}
+  ButtonAText: {fileID: 901227389}
+  ButtonB: {fileID: 2117686558}
+  ButtonBText: {fileID: 1735910465}
+  ButtonC: {fileID: 1363191218}
+  ButtonCText: {fileID: 851761582}
+  ButtonD: {fileID: 1658032169}
+  ButtonDText: {fileID: 143057675}
+  ButtonE: {fileID: 934056758}
+  ButtonEText: {fileID: 219635596}
+  SubmitButton: {fileID: 1066733983}
 --- !u!1 &143057673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,7 +1116,7 @@ GameObject:
   - component: {fileID: 1066733984}
   - component: {fileID: 1066733983}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SubmitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
