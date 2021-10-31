@@ -24,8 +24,8 @@
 ## Component Design
 * View the full Component Design Documentation [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%203/Component%20Design.pdf)
 
-  * View the Component Diagram [here]()
+  * View the Component Diagram [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%203/Diagrams/Component%20Diagram-Component%20Diagram.drawio.png)
 
-  * View the Communication Diagrams [here]()
+  * View the Communication Diagrams [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%203/Diagrams/Component%20Diagram-Communication%20Diagrams.drawio.png)
 
-  * View the Data Persistence Diagram [here]()
+  * View the Data Persistence Diagram [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%203/Diagrams/Data%20Persistence%20Diagram_v2.png)
