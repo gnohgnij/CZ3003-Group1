@@ -35,6 +35,6 @@
 
   * View the White Box Testing Diagrams [here](https://github.com/gnohgnij/CZ3003-Group1/tree/main/Documentations/Lab%204/White%20Box%20Testing%20Diagrams)
 
-  * View the Black Box Testing Document [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%204/Black%20Box%20Test%20Cases.pdf)
+  * View the Black Box Test Cases [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%204/Black%20Box%20Test%20Cases.pdf)
 
   * View the Test Script for Load/Performance Testing [here](https://github.com/gnohgnij/CZ3003-Group1/blob/main/Documentations/Lab%204/locust.py)
