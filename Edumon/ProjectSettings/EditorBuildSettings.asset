@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Register.unity
     guid: 660415a9c2bd19b46b065c5efd255941
   - enabled: 1
-    path: Assets/Scenes/Map4.unity
+    path: Assets/Scenes/Map3.unity
     guid: 81bec547d8b2ec640872735b4143ff39
   - enabled: 1
     path: Assets/Scenes/Gym3.unity
@@ -36,7 +36,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TeacherProfile.unity
     guid: fabcef024fcf13d46949c9aeb3de1028
   - enabled: 1
-    path: Assets/Scenes/Gym5.unity
+    path: Assets/Scenes/Gym1.unity
     guid: 09eeaa51bb07288429a7a6e39945d8df
   - enabled: 1
     path: Assets/Scenes/Gym2.unity
@@ -48,7 +48,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Map2.unity
     guid: e8520fb1747929045a0c9c299e8a9663
   - enabled: 1
-    path: Assets/Scenes/Map3.unity
+    path: Assets/Scenes/Map4.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/StudentEditProfile.unity
@@ -72,7 +72,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Leaderboard.unity
     guid: c74f17d9486f8409abecca4ee02c2098
   - enabled: 1
-    path: Assets/Scenes/Gym1.unity
+    path: Assets/Scenes/Gym5.unity
     guid: 3b7771989d6514d4d9b4a38079f2f5d0
   - enabled: 1
     path: Assets/Scenes/EditQuestion.unity
@@ -86,4 +86,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StudentHome.unity
     guid: e47a963478a41ff4b86ecc63ce719303
+  - enabled: 1
+    path: Assets/Scenes/AssignmentChallengeView.unity
+    guid: 34b01784072a1ce4d930946d946e3ce6
   m_configObjects: {}
