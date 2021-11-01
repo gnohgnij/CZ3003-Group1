@@ -8,7 +8,7 @@ public class AssignmentChallengeController : MonoBehaviour
 {
     public void Btn_View_Assignment_Clicked()
     {
-        SceneManager.LoadScene("Assignment");
+        SceneManager.LoadScene("SetChallenge");
     }
 
     public void Btn_View_Challenge_Clicked()

@@ -29,7 +29,8 @@ public class AssignmentController : MonoBehaviour
             else
             {
                 Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                string jsonString = webRequest.downloadHandler.text;        
+                string jsonString = webRequest.downloadHandler.text;       
+                Debug.Log(jsonString); 
             }
         }
     }
