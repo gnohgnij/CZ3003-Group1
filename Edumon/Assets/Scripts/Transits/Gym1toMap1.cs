@@ -16,6 +16,9 @@ public class Gym1toMap1 : MonoBehaviour
             // PlayerPrefs.SetFloat("SavedYPosition", yPos - 1); 
             // Debug.Log(PlayerPrefs.GetFloat("SavedXPosition"));
             // Debug.Log(PlayerPrefs.GetFloat("SavedYPosition"));
+
+            StateManager.currentGym = "";
+
             SceneManager.LoadScene("Map1"); 
         }
     }

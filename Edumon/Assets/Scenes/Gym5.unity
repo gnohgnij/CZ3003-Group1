@@ -958,9 +958,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1542246094}
   - component: {fileID: 1542246093}
-  - component: {fileID: 1542246092}
   - component: {fileID: 1542246091}
   - component: {fileID: 1542246090}
+  - component: {fileID: 1542246092}
   m_Layer: 9
   m_Name: Sign board
   m_TagString: Untagged
@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1542246089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8528081e201b58642ae6148519cc9cd0, type: 3}
+  m_Script: {fileID: 11500000, guid: d715b4943443a14429165fa3f73f294a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialog:

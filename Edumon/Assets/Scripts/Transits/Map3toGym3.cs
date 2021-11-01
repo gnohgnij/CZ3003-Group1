@@ -16,6 +16,9 @@ public class Map3toGym3 : MonoBehaviour
             PlayerPrefs.SetFloat("Saved3YPosition", yPos-1); 
             Debug.Log(PlayerPrefs.GetFloat("Saved3XPosition"));
             Debug.Log(PlayerPrefs.GetFloat("Saved3YPosition"));
+
+            StateManager.currentGym = "Gym3";
+
             SceneManager.LoadScene("Gym3"); 
         }
     }

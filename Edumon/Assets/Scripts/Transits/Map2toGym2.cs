@@ -16,6 +16,9 @@ public class Map2toGym2 : MonoBehaviour
             PlayerPrefs.SetFloat("Saved2YPosition", yPos - 1); 
             Debug.Log(PlayerPrefs.GetFloat("Saved2XPosition"));
             Debug.Log(PlayerPrefs.GetFloat("Saved2YPosition"));
+
+            StateManager.currentGym = "Gym2";
+
             SceneManager.LoadScene("Gym2"); 
         }
     }

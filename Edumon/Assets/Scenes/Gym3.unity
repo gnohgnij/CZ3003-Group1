@@ -5040,9 +5040,9 @@ GameObject:
   m_Component:
   - component: {fileID: 787402306}
   - component: {fileID: 787402305}
-  - component: {fileID: 787402304}
   - component: {fileID: 787402303}
   - component: {fileID: 787402302}
+  - component: {fileID: 787402304}
   m_Layer: 9
   m_Name: Sign board
   m_TagString: Untagged
@@ -5106,7 +5106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 787402301}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8528081e201b58642ae6148519cc9cd0, type: 3}
+  m_Script: {fileID: 11500000, guid: d715b4943443a14429165fa3f73f294a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialog:
@@ -5307,6 +5307,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   whereIsWaldo: {fileID: 0}
+  dialog:
+    lines: []
 --- !u!212 &1442712510
 SpriteRenderer:
   m_ObjectHideFlags: 0

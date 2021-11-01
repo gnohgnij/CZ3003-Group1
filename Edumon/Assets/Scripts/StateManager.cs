@@ -32,4 +32,6 @@ public class StateManager : MonoBehaviour
     public static int gymQustionIndex = 0;
     public static int gymQuestionsSize = 0;
     public static Question[] gymQuestions;
+
+    public static string currentGym = "";
 }

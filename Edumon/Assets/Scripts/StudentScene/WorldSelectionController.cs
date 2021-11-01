@@ -54,6 +54,7 @@ public class WorldSelectionController : MonoBehaviour
 
     public void Btn_Challenge_World_Clicked()
     {
+        StateManager.currentGym = "Gym5";
         SceneManager.LoadScene("Gym5");
     }
 
