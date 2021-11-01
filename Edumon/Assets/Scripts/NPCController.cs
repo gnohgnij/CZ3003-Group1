@@ -25,5 +25,11 @@ public class NPCController : MonoBehaviour, Interactable
         {
             SceneManager.LoadScene("AssignmentChallengeView");
         }
+
+        else if (ManageDialog && Input.GetKeyDown(KeyCode.E) && (StateManager.currentGym == "Gym1" 
+        || StateManager.currentGym == "Gym2" || StateManager.currentGym == "Gym3" || StateManager.currentGym == "Gym4")) 
+        {
+            SceneManager.LoadScene("MCQSingle");
+        }
     }
 }
