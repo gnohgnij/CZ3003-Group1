@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 public class LeaderboardController : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public class LeaderboardController : MonoBehaviour
     private const string accountURL = "https://cz3003-edumon.herokuapp.com/account";
     public Text emailAddresses;
     public Text scores;
+    public Dictionary<string, int> users = new Dictionary<string, int>();
+    // public Dictionary<string, int>[] users = new Dictionary<string, int>[] {
+    //     new Dictionary<string, int>(),
+    //     new Dictionary<string, int>(),
+    //     new Dictionary<string, int>(),
+    //     new Dictionary<string, int>(),
+    //     new Dictionary<string, int>()
+    // };
+    public int counter = 0;
 
     void Start()
     {
@@ -51,9 +61,19 @@ public class LeaderboardController : MonoBehaviour
                 //get score from each student
                 foreach(Account a in students)
                 {
-                    StartCoroutine(GetAttemptRequest(attemptURL + a.email));
+                    yield return StartCoroutine(GetAttemptRequest(attemptURL + a.email));
                 }
+
             }
+
+            // yield return new WaitForSeconds(10);
+            var val = from ele in users orderby ele.Value descending select ele;
+            foreach (var group in val){
+                Debug.Log("Key: " + group.Key + " Value: " + group.Value);
+                emailAddresses.text += "\n" + group.Key + "\n";
+                scores.text += "\n" + group.Value + "\n";
+            }
+            
         }
     }
 
@@ -71,17 +91,6 @@ public class LeaderboardController : MonoBehaviour
 
             else
             {
-                Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                emailAddresses.text += "\n" + pages[page] + "\n";
-                if (webRequest.downloadHandler.text.IndexOf("score") == -1){
-                    scores.text += "\n" + "NA" + "\n";
-                }
-                else{
-                    scores.text += "\n" + webRequest.downloadHandler.text[webRequest.downloadHandler.text.IndexOf("score") + 7] + "\n";
-                }
-                // scores.text += "\n" + Regex.Replace(webRequest.downloadHandler.text, '{.*?{', string.Empty) + "\n";
-                
-                // += "\n" + pages[page] + ":\nReceived: " + webRequest.downloadHandler.text;
                 string jsonString = webRequest.downloadHandler.text;
                 AttemptEmailResponse attemptEmailResponse = JsonUtility.FromJson<AttemptEmailResponse>(jsonString);
                 Attempt[] attempt = attemptEmailResponse.data;
@@ -112,8 +121,26 @@ public class LeaderboardController : MonoBehaviour
                 {
                     totalPoints += score;
                 }
+                // Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                // emailAddresses.text += "\n" + pages[page] + "\n";
+                // if (webRequest.downloadHandler.text.IndexOf("score") == -1){
+                //     scores.text += "\n" + "NA" + "\n";
+                // }
+                // else{
+                //     scores.text += "\n" + totalPoints + "\n";
+                //     // scores.text += "\n" + webRequest.downloadHandler.text[webRequest.downloadHandler.text.IndexOf("score") + 7] + "\n";
+                // }
+                // scores.text += "\n" + Regex.Replace(webRequest.downloadHandler.text, '{.*?{', string.Empty) + "\n";
                 
-                Debug.Log(totalPoints);
+                // += "\n" + pages[page] + ":\nReceived: " + webRequest.downloadHandler.text;
+                // var user = new Dictionary <string, int> {
+                //     pages[page], totalPoints
+                // };
+                users.Add(pages[page], totalPoints);
+                // Debug.Log(pages[page] + totalPoints + counter);
+                // Debug.Log(users[pages[page]]);
+                counter++;
+                // Debug.Log("Does this work?" + totalPoints);
 
             }
         }
