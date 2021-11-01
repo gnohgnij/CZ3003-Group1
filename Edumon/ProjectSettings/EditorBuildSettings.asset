@@ -89,4 +89,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AssignmentChallengeView.unity
     guid: 34b01784072a1ce4d930946d946e3ce6
+  - enabled: 1
+    path: Assets/Scenes/Assignment.unity
+    guid: 6fec5f54551faf64595f099720881182
+  - enabled: 1
+    path: Assets/Scenes/Challenge.unity
+    guid: 44400f226c6454e478bc33b4e6bdf96b
   m_configObjects: {}
