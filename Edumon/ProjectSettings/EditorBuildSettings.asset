@@ -87,10 +87,10 @@ EditorBuildSettings:
     path: Assets/Scenes/StudentHome.unity
     guid: e47a963478a41ff4b86ecc63ce719303
   - enabled: 1
-    path: Assets/Scenes/AssignmentChallengeView.unity
+    path: Assets/Scenes/ChallengeView.unity
     guid: 34b01784072a1ce4d930946d946e3ce6
   - enabled: 1
-    path: Assets/Scenes/SetChallenge.unity
+    path: Assets/Scenes/CreateChallenge.unity
     guid: 6fec5f54551faf64595f099720881182
   - enabled: 1
     path: Assets/Scenes/Challenge.unity

@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class AssignmentChallengeController : MonoBehaviour
+public class ViewChallengeController : MonoBehaviour
 {
     public void Btn_View_Assignment_Clicked()
     {
-        SceneManager.LoadScene("SetChallenge");
+        SceneManager.LoadScene("CreateChallenge");
     }
 
     public void Btn_View_Challenge_Clicked()
