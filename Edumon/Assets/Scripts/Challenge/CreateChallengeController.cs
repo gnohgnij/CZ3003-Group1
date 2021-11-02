@@ -66,7 +66,7 @@ public class CreateChallengeController : MonoBehaviour
 
     public void Btn_Submit_Clicked()
     {
-        StartCoroutine(Submit_Assignment(DDInputField.text, MMInputField.text, YYYYInputField.text, hhInputField.text, mmInputField.text, ssInputField.text, emailField.text));
+        StartCoroutine(Submit_Challenge(DDInputField.text, MMInputField.text, YYYYInputField.text, hhInputField.text, mmInputField.text, ssInputField.text, emailField.text));
     }
 
     private IEnumerator Submit_Challenge(string dd, string MM, string yyyy, string HH, string mm, string ss, string email, string opponentEmail)
