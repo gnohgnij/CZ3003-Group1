@@ -246,7 +246,6 @@ MonoBehaviour:
   dialog:
     lines:
     - Hi, can I have your order?
-    - Welcome to UniQlo!
 --- !u!61 &9384549
 BoxCollider2D:
   m_ObjectHideFlags: 0

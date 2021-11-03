@@ -15,4 +15,10 @@ public class ViewChallengeController : MonoBehaviour
     {
         SceneManager.LoadScene("Challenge");
     }
+
+    public void Back_Btn_Clicked()
+    {
+        StateManager.currentGym = "Gym5";
+        SceneManager.LoadScene("Gym5");
+    }
 }

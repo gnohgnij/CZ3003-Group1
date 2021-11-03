@@ -34,4 +34,5 @@ public class StateManager : MonoBehaviour
     public static Question[] gymQuestions;
 
     public static string currentGym = "";
+    public static string[] challengeQuestionList;
 }

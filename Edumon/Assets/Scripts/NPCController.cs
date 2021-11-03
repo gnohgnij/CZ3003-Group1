@@ -19,7 +19,7 @@ public class NPCController : MonoBehaviour, Interactable
 
         if (ManageDialog && Input.GetKeyDown(KeyCode.E) && StateManager.currentGym == "Gym5") 
         {
-            SceneManager.LoadScene("AssignmentChallengeView");
+            SceneManager.LoadScene("ChallengeView");
         }
 
         else if (ManageDialog && Input.GetKeyDown(KeyCode.E) && (StateManager.currentGym == "Gym1" 

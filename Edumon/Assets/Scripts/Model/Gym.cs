@@ -3,7 +3,8 @@ using System;
 [Serializable]
 public class Gym
 {
-    public int passing_score;
-    public int question_count;
+    public string gymId;
     public string[] question_list;
+    public int question_count;
+    public int passing_score;
 }
