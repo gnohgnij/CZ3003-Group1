@@ -81,17 +81,6 @@ public class EditGymQuestionsController : MonoBehaviour
         StartCoroutine(Retrieve_Gym_Data(3));
     }
 
-    public void Btn_Edit_Gym_5_Questions_Clicked()
-    {
-        Message.gameObject.SetActive(false);
-
-        StateManager.gymQustionIndex = 0;
-        StateManager.gymQuestionsSize = 0;
-        StateManager.gymQuestions = null;
-
-        StartCoroutine(Retrieve_Gym_Data(4));
-    }
-
     private IEnumerator Retrieve_Gym_Data(int _index)
     {
         bool stop = false;

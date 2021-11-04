@@ -23,16 +23,24 @@ public class StateManager : MonoBehaviour
     public static bool studentHomeStatusTag = false;
     public static string studentHomeStatusMessage = "";
 
+    public static bool challengeStatusTag = false;
+    public static string challengeStatusMessage = "";
+
     public static int questionIndex = 0;
     public static int assignmentQuestionSize = 0;
     public static Question[] assignmentQuestions;
     public static string assignmentId;
 
-    public static string[] gymId = new string[] { "2AcLYXxjcwUH8M6pS4kZ", "kz6hrs41oWb7tRHalQei", "Ma8MvuUvTeEHwLr7cPKd", "CJlAjApLDPzKPDZAYLVk", "O2zaxmG5w0wWnH5UkjlV" };
+    public static string[] gymId = new string[] { "DeDnjKAqlzb5cKOJrIzk", "9vF4uGW4b7oop1EUK1Sm", "IFBMLqL6Mb16fagAChaO", "bcO5PTXYNsHaREccZovg" };
     public static int gymQustionIndex = 0;
     public static int gymQuestionsSize = 0;
     public static Question[] gymQuestions;
 
     public static string currentGym = "";
     public static string[] challengeQuestionList;
+
+    public static int challengeQuestionIndex = 0;
+    public static int challengeQuestionSize = 0;
+    public static Question[] challengeQuestions;
+    //public static string challengeId;
 }

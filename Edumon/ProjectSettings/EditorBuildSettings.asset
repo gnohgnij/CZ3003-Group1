@@ -98,4 +98,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MCQSingle.unity
     guid: 60d27f76ce2d74cc38d3531da314d2ac
+  - enabled: 1
+    path: Assets/Scenes/CreateChallengeQuestion.unity
+    guid: 9abce299b68a4c8429f2ce2d5e0a7e07
   m_configObjects: {}
