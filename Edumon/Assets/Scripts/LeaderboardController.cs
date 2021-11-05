@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Text.RegularExpressions;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class LeaderboardController : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class LeaderboardController : MonoBehaviour
     //     new Dictionary<string, int>()
     // };
     public int counter = 0;
+
+    public void Btn_Return_To_Homepage_Clicked()
+    {
+        SceneManager.LoadScene("StudentHome");
+    }
 
     void Start()
     {
