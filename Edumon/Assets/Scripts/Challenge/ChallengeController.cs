@@ -48,16 +48,17 @@ public class ChallengeController : MonoBehaviour
                     i++;
 
                     Button btn = button.GetComponent<Button>();
-                    btn.onClick.AddListener(() => ButtonClicked(c.question_list));
+                    btn.onClick.AddListener(() => ButtonClicked(c));
                 }        
             }
         }
     }
 
-    public void ButtonClicked(string[] question_list)
+    public void ButtonClicked(Challenge c)
     {
-        StateManager.challengeQuestionList = question_list;
-        StateManager.challengeQuestionSize = question_list.Length;
+        StateManager.challengeQuestionList = c.question_list;
+        StateManager.challengeQuestionSize = c.question_list.Length;
+        StateManager.challengeId = c.challenge_id;
         StateManager.challengeQuestionIndex = 0;
         Debug.Log("Loading Challenge with " + StateManager.challengeQuestionSize + " questions");
         SceneManager.LoadScene("MCQSingle");
