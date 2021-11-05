@@ -42,5 +42,5 @@ public class StateManager : MonoBehaviour
     public static int challengeQuestionIndex = 0;
     public static int challengeQuestionSize = 0;
     public static Question[] challengeQuestions;
-    //public static string challengeId;
+    public static string challengeId;
 }

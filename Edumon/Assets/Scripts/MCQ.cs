@@ -7,13 +7,12 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-//TODO: Challenge manager to handle 
-
 public class MCQ : MonoBehaviour
 {
-    private const string URL = "https://cz3003-edumon.herokuapp.com/";
+    private static string URL = StateManager.apiUrl;
     private EventSystem EventSystem;
     private int AnswerSelection = 0;
+    private int[] ChallengeAnswers;
     public TextMeshProUGUI QuestionText;
     public Button ButtonA;
     public TextMeshProUGUI ButtonAText;
@@ -38,11 +37,19 @@ public class MCQ : MonoBehaviour
         ButtonE.onClick.AddListener(() => AnswerButtonClicked(5));
         SubmitButton.onClick.AddListener(SubmitButtonClicked);
         
+        //Disable submit button until user selects an answer
+        SubmitButton.gameObject.SetActive(false);
+
         //Disable fifth button as challenges only have 4 options
         ButtonE.gameObject.SetActive(false);
 
+        //Store user's answers in an int array
+        ChallengeAnswers = new int[StateManager.challengeQuestionSize];
+
+        LoadQuestionsFromQuestionListCurrentIndex();
+
         //Hardcoded question ID here
-        StartCoroutine(DisplayQuestionFromId("SM3AlYWKEDIrOo02UJtl"));
+        //StartCoroutine(DisplayQuestionFromId("SM3AlYWKEDIrOo02UJtl"));
     }
 
     // Update is called once per frame
@@ -51,9 +58,63 @@ public class MCQ : MonoBehaviour
         
     }
 
+    private void LoadQuestionsFromQuestionListCurrentIndex() {
+        StartCoroutine(DisplayQuestionFromId(StateManager.challengeQuestionList[StateManager.challengeQuestionIndex]));
+        
+        //Disable submit button after every new question displayed
+        SubmitButton.gameObject.SetActive(false);
+    }
+    
     void SubmitButtonClicked() {
-        //Insert logic here
-        Debug.Log("Submitting option: " + AnswerSelection);
+        //Prevent multiple clicks
+        SubmitButton.gameObject.SetActive(false);
+        //Save question answer
+        ChallengeAnswers[StateManager.challengeQuestionIndex] = AnswerSelection;
+        //If no questions remain, submit challenge
+        if ((StateManager.challengeQuestionIndex + 1) == StateManager.challengeQuestionSize) {
+            SubmitChallenge();
+        //Otherwise, load next question
+        } else {
+            StateManager.challengeQuestionIndex++;
+            LoadQuestionsFromQuestionListCurrentIndex();
+        }
+    }
+
+    private IEnumerator SubmitChallenge() {
+        //Needed: question_set, question_group, user_email, user_answers
+        string user_answers = "{\"" + StateManager.challengeQuestionList[0] + "\": " + ChallengeAnswers[0];
+        for (int i = 1; i < StateManager.challengeQuestionSize; i++) {
+            user_answers += ", \"" + StateManager.challengeQuestionList[0] + "\": " + ChallengeAnswers[i];
+        }
+        user_answers += "}";
+
+        string attemptJsonBody = "{ \"question_set\": \"" + StateManager.challengeId + "\",";
+        attemptJsonBody += " \"question_group\": \"Challenge\",";
+        attemptJsonBody += " \"user_email\": \"" + StateManager.user.email + "\",";
+        attemptJsonBody += "\"user_answers\": " + user_answers;
+        attemptJsonBody += "}";
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(attemptJsonBody);
+
+        string attemptUrl = StateManager.apiUrl + "attempt";
+        var attemptUwr = new UnityWebRequest(attemptUrl, "POST");
+        
+        attemptUwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        attemptUwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        attemptUwr.SetRequestHeader("Content-Type", "application/json");
+        yield return attemptUwr.SendWebRequest();
+
+        if (attemptUwr.result == UnityWebRequest.Result.ConnectionError) {
+            QuestionText.text = "Network Error";
+        } else {
+            AttemptPostResult attempPostResult = JsonUtility.FromJson<AttemptPostResult>(attemptUwr.downloadHandler.text);
+            if (attempPostResult.status == "fail") {
+                QuestionText.text = "Unable to submit challenge. Please contact the admin\nError: " + attempPostResult.message;
+            } else {
+                StateManager.challengeStatusTag = true;
+                StateManager.challengeStatusMessage = "Challenge attempt submitted";
+                EndChallenge();
+            }
+        }
     }
 
     public void RenameTMPLabel(string text, TextMeshProUGUI label) => label.text = text;
@@ -100,7 +161,8 @@ public class MCQ : MonoBehaviour
             ButtonE.Select();
         }
         Debug.Log("Answer Button Clicked: " + option);
+        SubmitButton.gameObject.SetActive(true);
     }
 
-    private void EndChallenge() => SceneManager.LoadScene("Gym5");
+    private void EndChallenge() => SceneManager.LoadScene("Challenge");
 }

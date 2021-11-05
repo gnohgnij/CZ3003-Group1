@@ -57,7 +57,9 @@ public class ChallengeController : MonoBehaviour
     public void ButtonClicked(string[] question_list)
     {
         StateManager.challengeQuestionList = question_list;
-        Debug.Log(StateManager.challengeQuestionList.Length);
+        StateManager.challengeQuestionSize = question_list.Length;
+        StateManager.challengeQuestionIndex = 0;
+        Debug.Log("Loading Challenge with " + StateManager.challengeQuestionSize + " questions");
         SceneManager.LoadScene("MCQSingle");
     }
 }
