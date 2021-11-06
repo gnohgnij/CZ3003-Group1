@@ -13,7 +13,7 @@ public class MCQ : MonoBehaviour
     private static string URL = StateManager.apiUrl;
     private EventSystem EventSystem;
     private int AnswerSelection = 0;
-    private int[] ChallengeAnswers;
+    private int[] SelectedAnswers;
     public TextMeshProUGUI QuestionText;
     public Button ButtonA;
     public TextMeshProUGUI ButtonAText;
@@ -28,6 +28,13 @@ public class MCQ : MonoBehaviour
 	public Button SubmitButton;
     private Button[] AnswerButtons;
     private TextMeshProUGUI[] AnswerButtonsText;
+    private int NumberOfQuestions;
+    private int QuestionIndex = 0;
+    private string[] QuestionList;
+    private string QuestionSet;
+    private string QuestionGroup;
+    private string UserEmail = StateManager.user.email;
+    private string CurrentGym;
 
     // Start is called before the first frame update
     void Start()
@@ -37,15 +44,31 @@ public class MCQ : MonoBehaviour
         
         //Add listeners for answer buttons
         for (int i = 0; i < AnswerButtons.Length; i++) {
-            AnswerButtons[i].onClick.AddListener(() => AnswerButtonClicked(i));
+            int buttonIndex = i;
+            AnswerButtons[i].onClick.AddListener(() => AnswerButtonClicked(buttonIndex));
         }
         SubmitButton.onClick.AddListener(SubmitButtonClicked);
         
         //Disable submit button until user selects an answer
         SubmitButton.gameObject.SetActive(false);
 
+        QuestionGroup = StateManager.mcqQuestionGroup;
+
+        if (String.Equals(QuestionGroup, "Challenge")) {
+            NumberOfQuestions = StateManager.challengeQuestionSize;
+            QuestionList = StateManager.challengeQuestionList;
+            QuestionSet = StateManager.challengeId;
+        } else if (String.Equals(QuestionGroup, "Gym")) {
+            NumberOfQuestions = StateManager.gymQuestionsSize;
+            QuestionList = StateManager.gymQuestionList;
+            QuestionSet = StateManager.gymId;
+            CurrentGym = StateManager.currentGym;
+        }
+
+        
+
         //Store user's answers in an int array
-        ChallengeAnswers = new int[StateManager.challengeQuestionSize];
+        SelectedAnswers = new int[NumberOfQuestions];
 
         LoadQuestionsFromQuestionListCurrentIndex();
 
@@ -60,7 +83,7 @@ public class MCQ : MonoBehaviour
     }
 
     private void LoadQuestionsFromQuestionListCurrentIndex() {
-        StartCoroutine(DisplayQuestionFromId(StateManager.challengeQuestionList[StateManager.challengeQuestionIndex]));
+        StartCoroutine(DisplayQuestionFromId(QuestionList[QuestionIndex]));
         
         //Disable submit button after every new question displayed
         SubmitButton.gameObject.SetActive(false);
@@ -70,33 +93,35 @@ public class MCQ : MonoBehaviour
         //Prevent multiple clicks
         SubmitButton.gameObject.SetActive(false);
         //Save question answer
-        ChallengeAnswers[StateManager.challengeQuestionIndex] = AnswerSelection;
+        SelectedAnswers[QuestionIndex] = AnswerSelection;
         //If no questions remain, submit challenge
-        if ((StateManager.challengeQuestionIndex + 1) == StateManager.challengeQuestionSize) {
-            StartCoroutine(SubmitChallenge());
+        if ((QuestionIndex + 1) == NumberOfQuestions) {
+            StartCoroutine(SubmitMCQ());
         //Otherwise, load next question
         } else {
-            StateManager.challengeQuestionIndex++;
+            QuestionIndex++;
             LoadQuestionsFromQuestionListCurrentIndex();
         }
     }
 
-    private IEnumerator SubmitChallenge() {
+    private IEnumerator SubmitMCQ() {
         //Needed: question_set, question_group, user_email, user_answers
-        string user_answers = "{\"" + StateManager.challengeQuestionList[0] + "\": " + ChallengeAnswers[0];
-        for (int i = 1; i < StateManager.challengeQuestionSize; i++) {
-            user_answers += ", \"" + StateManager.challengeQuestionList[0] + "\": " + ChallengeAnswers[i];
+        string userAnswers = "{\"" + QuestionList[0] + "\": " + SelectedAnswers[0];
+        for (int i = 1; i < NumberOfQuestions; i++) {
+            userAnswers += ", \"" + QuestionList[i] + "\": " + SelectedAnswers[i];
         }
-        user_answers += "}";
-
-        string attemptJsonBody = "{ \"question_set\": \"" + StateManager.challengeId + "\",";
-        attemptJsonBody += " \"question_group\": \"Challenge\",";
-        attemptJsonBody += " \"user_email\": \"" + StateManager.user.email + "\",";
-        attemptJsonBody += "\"user_answers\": " + user_answers;
+        userAnswers += "}";
+        Debug.Log("User Answers: " + userAnswers);
+        
+        string attemptJsonBody = "{ \"question_set\": \"" + QuestionSet + "\",";
+        attemptJsonBody += " \"question_group\": \"" + QuestionGroup + "\",";
+        attemptJsonBody += " \"user_email\": \"" + UserEmail + "\",";
+        attemptJsonBody += "\"user_answers\": " + userAnswers;
         attemptJsonBody += "}";
+        Debug.Log("Attempt JSON Body: " + attemptJsonBody);
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(attemptJsonBody);
 
-        string attemptUrl = StateManager.apiUrl + "attempt";
+        string attemptUrl = URL + "attempt";
         var attemptUwr = new UnityWebRequest(attemptUrl, "POST");
         
         attemptUwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
@@ -111,9 +136,11 @@ public class MCQ : MonoBehaviour
             if (attempPostResult.status == "fail") {
                 QuestionText.text = "Unable to submit challenge. Please contact the admin\nError: " + attempPostResult.message;
             } else {
+                if (String.Equals(QuestionGroup, "Challenge")) {
                 StateManager.challengeStatusTag = true;
                 StateManager.challengeStatusMessage = "Challenge attempt submitted";
-                EndChallenge();
+                }
+                EndMCQ();
             }
         }
     }
@@ -148,12 +175,18 @@ public class MCQ : MonoBehaviour
 
     void AnswerButtonClicked(int index) {
         EventSystem.current.SetSelectedGameObject(null);
-        
         int option = index + 1;
-        AnswerButtons[option].Select();
+        AnswerButtons[index].Select();
+        AnswerSelection = option;
         Debug.Log("Answer Button Clicked: " + option);
         SubmitButton.gameObject.SetActive(true);
     }
 
-    private void EndChallenge() => SceneManager.LoadScene("Challenge");
+    private void EndMCQ() {
+        if (String.Equals(QuestionGroup, "Challenge")) {
+            SceneManager.LoadScene("Challenge");
+        } else if (String.Equals(QuestionGroup, "Gym")) {
+            SceneManager.LoadScene(CurrentGym);
+        }
+    }
 }

@@ -87,7 +87,7 @@ public class EditGymQuestionsController : MonoBehaviour
         GymResult gymResult = null;
 
         // get gym data first
-        string gymUrl = StateManager.apiUrl + "gym/" + StateManager.gymId[_index];
+        string gymUrl = StateManager.apiUrl + "gym/" + StateManager.gymIdList[_index];
 
         UnityWebRequest gymUwr = UnityWebRequest.Get(gymUrl);
         yield return gymUwr.SendWebRequest();

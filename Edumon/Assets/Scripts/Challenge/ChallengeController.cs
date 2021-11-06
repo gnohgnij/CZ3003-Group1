@@ -59,7 +59,7 @@ public class ChallengeController : MonoBehaviour
         StateManager.challengeQuestionList = c.question_list;
         StateManager.challengeQuestionSize = c.question_list.Length;
         StateManager.challengeId = c.challenge_id;
-        StateManager.challengeQuestionIndex = 0;
+        StateManager.mcqQuestionGroup = "Challenge";
         Debug.Log("Loading Challenge with " + StateManager.challengeQuestionSize + " questions");
         SceneManager.LoadScene("MCQSingle");
     }
