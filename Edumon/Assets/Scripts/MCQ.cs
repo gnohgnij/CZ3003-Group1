@@ -36,11 +36,9 @@ public class MCQ : MonoBehaviour
         AnswerButtonsText = new TextMeshProUGUI[] {ButtonAText, ButtonBText, ButtonCText, ButtonDText, ButtonEText};
         
         //Add listeners for answer buttons
-        ButtonA.onClick.AddListener(() => AnswerButtonClicked(1));
-        ButtonB.onClick.AddListener(() => AnswerButtonClicked(2));
-        ButtonC.onClick.AddListener(() => AnswerButtonClicked(3));
-        ButtonD.onClick.AddListener(() => AnswerButtonClicked(4));
-        ButtonE.onClick.AddListener(() => AnswerButtonClicked(5));
+        for (int i = 0; i < AnswerButtons.Length; i++) {
+            AnswerButtons[i].onClick.AddListener(() => AnswerButtonClicked(i));
+        }
         SubmitButton.onClick.AddListener(SubmitButtonClicked);
         
         //Disable submit button until user selects an answer
@@ -137,7 +135,7 @@ public class MCQ : MonoBehaviour
                 
                 RenameTMPLabel(question.question_text, QuestionText);
                 string[] questionOptionsText = {question.option_one, question.option_two, question.option_three, question.option_four, question.option_five};
-                
+
                 for (int i = 0; i < AnswerButtons.Length; i++) {
                     RenameTMPLabel(questionOptionsText[i], AnswerButtonsText[i]);
                     if (String.IsNullOrEmpty((AnswerButtonsText[i].text))) {
@@ -148,9 +146,11 @@ public class MCQ : MonoBehaviour
         }
     }
 
-    void AnswerButtonClicked(int option) {
+    void AnswerButtonClicked(int index) {
         EventSystem.current.SetSelectedGameObject(null);
-        AnswerButtons[option-1].Select();
+        
+        int option = index + 1;
+        AnswerButtons[option].Select();
         Debug.Log("Answer Button Clicked: " + option);
         SubmitButton.gameObject.SetActive(true);
     }
