@@ -72,7 +72,7 @@ public class MCQ : MonoBehaviour
         ChallengeAnswers[StateManager.challengeQuestionIndex] = AnswerSelection;
         //If no questions remain, submit challenge
         if ((StateManager.challengeQuestionIndex + 1) == StateManager.challengeQuestionSize) {
-            SubmitChallenge();
+            StartCoroutine(SubmitChallenge());
         //Otherwise, load next question
         } else {
             StateManager.challengeQuestionIndex++;
