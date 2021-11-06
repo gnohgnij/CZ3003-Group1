@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -25,10 +26,15 @@ public class MCQ : MonoBehaviour
 	public Button ButtonE;
     public TextMeshProUGUI ButtonEText;
 	public Button SubmitButton;
+    private Button[] AnswerButtons;
+    private TextMeshProUGUI[] AnswerButtonsText;
 
     // Start is called before the first frame update
     void Start()
     {
+        AnswerButtons = new Button[] {ButtonA, ButtonB, ButtonC, ButtonD, ButtonE};
+        AnswerButtonsText = new TextMeshProUGUI[] {ButtonAText, ButtonBText, ButtonCText, ButtonDText, ButtonEText};
+        
         //Add listeners for answer buttons
         ButtonA.onClick.AddListener(() => AnswerButtonClicked(1));
         ButtonB.onClick.AddListener(() => AnswerButtonClicked(2));
@@ -39,9 +45,6 @@ public class MCQ : MonoBehaviour
         
         //Disable submit button until user selects an answer
         SubmitButton.gameObject.SetActive(false);
-
-        //Disable fifth button as challenges only have 4 options
-        ButtonE.gameObject.SetActive(false);
 
         //Store user's answers in an int array
         ChallengeAnswers = new int[StateManager.challengeQuestionSize];
@@ -137,7 +140,13 @@ public class MCQ : MonoBehaviour
                 RenameTMPLabel(question.option_two, ButtonBText);
                 RenameTMPLabel(question.option_three, ButtonCText);
                 RenameTMPLabel(question.option_four, ButtonDText);
-                //RenameTMPLabel(question.option_five, ButtonEText);
+                RenameTMPLabel(question.option_five, ButtonEText);
+                
+                for (int i = 0; i < AnswerButtons.Length; i++) {
+                    if (String.IsNullOrEmpty((AnswerButtonsText[i].text))) {
+                        AnswerButtons[i].gameObject.SetActive(false);
+                    } 
+                }
             }
         }
     }
