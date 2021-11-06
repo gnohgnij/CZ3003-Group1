@@ -136,13 +136,10 @@ public class MCQ : MonoBehaviour
                 question = questionResult.data;
                 
                 RenameTMPLabel(question.question_text, QuestionText);
-                RenameTMPLabel(question.option_one, ButtonAText);
-                RenameTMPLabel(question.option_two, ButtonBText);
-                RenameTMPLabel(question.option_three, ButtonCText);
-                RenameTMPLabel(question.option_four, ButtonDText);
-                RenameTMPLabel(question.option_five, ButtonEText);
+                string[] questionOptionsText = {question.option_one, question.option_two, question.option_three, question.option_four, question.option_five};
                 
                 for (int i = 0; i < AnswerButtons.Length; i++) {
+                    RenameTMPLabel(questionOptionsText[i], AnswerButtonsText[i]);
                     if (String.IsNullOrEmpty((AnswerButtonsText[i].text))) {
                         AnswerButtons[i].gameObject.SetActive(false);
                     } 
@@ -153,22 +150,7 @@ public class MCQ : MonoBehaviour
 
     void AnswerButtonClicked(int option) {
         EventSystem.current.SetSelectedGameObject(null);
-        AnswerSelection = option;
-        if (option == 1) {
-            ButtonA.Select();
-        }
-        if (option == 2) {
-            ButtonB.Select();
-        }
-        if (option == 3) {
-            ButtonC.Select();
-        }
-        if (option == 4) {
-            ButtonD.Select();
-        }
-        if (option == 5) {
-            ButtonE.Select();
-        }
+        AnswerButtons[option-1].Select();
         Debug.Log("Answer Button Clicked: " + option);
         SubmitButton.gameObject.SetActive(true);
     }
