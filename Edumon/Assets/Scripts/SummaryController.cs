@@ -10,7 +10,7 @@ public class SummaryController : MonoBehaviour
 {
     public TextMeshProUGUI ReportText;
     private string input;
-    private string email;
+    private string email = "";
 
     private readonly string attemptURL = "https://cz3003-edumon.herokuapp.com/attempt/";
     private readonly string accountURL = "https://cz3003-edumon.herokuapp.com/account";
@@ -49,15 +49,18 @@ public class SummaryController : MonoBehaviour
 
         JSONNode accountInfo = JSON.Parse(emailRequest.downloadHandler.text); //creates jsonnode with full parsed data?
 
-        for (var i = 0; i < accountInfo.Count; i++) //loop through all accounts to check if username matches input
+        for (var i = 0; i < accountInfo[1].Count; i++) //loop through all accounts to check if username matches input
         {
-            if (accountInfo[i]["username"] == input) 
+            Debug.Log(input);
+            if (accountInfo[1][i]["username"] == input) 
             {
-                email = accountInfo[i]["email"]; //updates email 
+                email = accountInfo[1][i]["email"]; //updates email 
+                Debug.Log(accountInfo[1][i]["username"]);
             }
         }
 
-        string scoreURL = attemptURL + "email/" + email.ToString(); //https://cz3003-edumon.herokuapp.com/attempt/email/ and add in the persons email
+        string scoreURL = attemptURL + "email/ch0109ng@e.ntu.edu.sg"; //https://cz3003-edumon.herokuapp.com/attempt/email/ and add in the persons email
+        
 
         UnityWebRequest scoreRequest = UnityWebRequest.Get(scoreURL);
         yield return scoreRequest.SendWebRequest();
@@ -69,15 +72,17 @@ public class SummaryController : MonoBehaviour
         }
 
         JSONNode scoreRecords = JSON.Parse(scoreRequest.downloadHandler.text); //should record all attempt data
-        int[] allScores = new int[scoreRecords.Count]; //new int array to store each score
+        int[] allScores = new int[scoreRecords[1].Count]; //new int array to store each score
 
-        for (int i = 0; i < scoreRecords.Count; i++)
+        for (int i = 0; i < scoreRecords[1].Count; i++)
         {
-            allScores[i] = scoreRecords[i]["score"]; //update the array
+            allScores[i] = scoreRecords[1][i]["score"]; //update the array
         }
 
-        ReportText.text = allScores.ToString(); //update the text gameobject
-
+        for (int i = 0; i < allScores.Length; i++) 
+        {
+            ReportText.text += allScores[i].ToString();
+        }
 
     }
 
