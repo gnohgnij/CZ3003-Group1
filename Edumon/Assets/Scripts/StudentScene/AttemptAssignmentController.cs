@@ -29,6 +29,7 @@ public class AttemptAssignmentController : MonoBehaviour
 
     public void Btn_Attempt_Clicked()
     {
+        StateManager.attemptAssignmentId = "";
         StartCoroutine(Retrieve_Assignment_Data(AssignmentIdInputField.text));
     }
 

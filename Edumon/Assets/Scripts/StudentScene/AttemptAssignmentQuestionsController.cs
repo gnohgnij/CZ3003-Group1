@@ -48,8 +48,11 @@ public class AttemptAssignmentQuestionsController : MonoBehaviour
     private void Display_Question()
     {
         Option3TextBox.gameObject.SetActive(false);
+        Option3.gameObject.SetActive(false);
         Option4TextBox.gameObject.SetActive(false);
+        Option4.gameObject.SetActive(false);
         Option5TextBox.gameObject.SetActive(false);
+        Option5.gameObject.SetActive(false);
         option_size = 2;
 
         Question.text = StateManager.assignmentQuestions[StateManager.questionIndex].question_text;
@@ -59,18 +62,21 @@ public class AttemptAssignmentQuestionsController : MonoBehaviour
         {
             option_size++;
             Option3TextBox.gameObject.SetActive(true);
+            Option3.gameObject.SetActive(true);
             Option3.text = StateManager.assignmentQuestions[StateManager.questionIndex].option_three;
         }
         if (!string.IsNullOrWhiteSpace(StateManager.assignmentQuestions[StateManager.questionIndex].option_four))
         {
             option_size++;
             Option4TextBox.gameObject.SetActive(true);
+            Option4.gameObject.SetActive(true);
             Option4.text = StateManager.assignmentQuestions[StateManager.questionIndex].option_four;
         }
         if (!string.IsNullOrWhiteSpace(StateManager.assignmentQuestions[StateManager.questionIndex].option_five))
         {
             option_size++;
             Option5TextBox.gameObject.SetActive(true);
+            Option5.gameObject.SetActive(true);
             Option5.text = StateManager.assignmentQuestions[StateManager.questionIndex].option_five;
         }
         if (assignmentAnswers[StateManager.questionIndex] != 0)
@@ -180,9 +186,10 @@ public class AttemptAssignmentQuestionsController : MonoBehaviour
             }
             else
             {
-                StateManager.studentHomeStatusTag = true;
-                StateManager.studentHomeStatusMessage = "Assignment submitted";
-                SceneManager.LoadScene("StudentHome");
+                //StateManager.studentHomeStatusTag = true;
+                //StateManager.studentHomeStatusMessage = "Assignment submitted";
+                StateManager.attemptAssignmentId = attempPostResult.data;
+                SceneManager.LoadScene("AssignmentScore");
             }
         }
     }

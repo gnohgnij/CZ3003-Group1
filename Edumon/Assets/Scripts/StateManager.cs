@@ -30,6 +30,7 @@ public class StateManager : MonoBehaviour
     public static int assignmentQuestionSize = 0;
     public static Question[] assignmentQuestions;
     public static string assignmentId;
+    public static string attemptAssignmentId = "";
 
     public static string[] gymIdList = {"DeDnjKAqlzb5cKOJrIzk", "9vF4uGW4b7oop1EUK1Sm", "IFBMLqL6Mb16fagAChaO", "bcO5PTXYNsHaREccZovg"};
     public static int gymQustionIndex = 0;
