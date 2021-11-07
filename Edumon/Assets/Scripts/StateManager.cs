@@ -31,11 +31,12 @@ public class StateManager : MonoBehaviour
     public static Question[] assignmentQuestions;
     public static string assignmentId;
 
-    public static string[] gymId = new string[] { "DeDnjKAqlzb5cKOJrIzk", "9vF4uGW4b7oop1EUK1Sm", "IFBMLqL6Mb16fagAChaO", "bcO5PTXYNsHaREccZovg" };
+    public static string[] gymIdList = {"DeDnjKAqlzb5cKOJrIzk", "9vF4uGW4b7oop1EUK1Sm", "IFBMLqL6Mb16fagAChaO", "bcO5PTXYNsHaREccZovg"};
     public static int gymQustionIndex = 0;
     public static int gymQuestionsSize = 0;
     public static Question[] gymQuestions;
-
+    public static string gymId;
+    public static string[] gymQuestionList;
     public static string currentGym = "";
     public static string[] challengeQuestionList;
 
@@ -43,4 +44,5 @@ public class StateManager : MonoBehaviour
     public static int challengeQuestionSize = 0;
     public static Question[] challengeQuestions;
     public static string challengeId;
+    public static string mcqQuestionGroup;
 }
