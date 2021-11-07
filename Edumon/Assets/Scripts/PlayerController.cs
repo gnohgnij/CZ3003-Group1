@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -94,6 +95,10 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.E))
             Interact();
+
+        if(Input.GetKeyDown(KeyCode.Escape) && 
+        (SceneManager.GetActiveScene().name == "Map1" || SceneManager.GetActiveScene().name == "Map2" || SceneManager.GetActiveScene().name == "Map3" || SceneManager.GetActiveScene().name == "Map4"))
+            SceneManager.LoadScene("StudentHome");
     }
 
     void Interact()
