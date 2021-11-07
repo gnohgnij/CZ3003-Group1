@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class WorldSelectionController : MonoBehaviour
@@ -10,7 +11,8 @@ public class WorldSelectionController : MonoBehaviour
     public Button World2Btn;
     public Button World3Btn;
     public Button World4Btn;
-    public Button World5Btn;
+
+    public Text WarningText;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,7 @@ public class WorldSelectionController : MonoBehaviour
         if (Array.IndexOf(StateManager.user.unlocked_map, "Map2") > 0) World2Btn.gameObject.SetActive(true);
         if (Array.IndexOf(StateManager.user.unlocked_map, "Map3") > 0) World3Btn.gameObject.SetActive(true);
         if (Array.IndexOf(StateManager.user.unlocked_map, "Map4") > 0) World4Btn.gameObject.SetActive(true);
-        if (Array.IndexOf(StateManager.user.unlocked_map, "Map5") > 0) World5Btn.gameObject.SetActive(true);
+        //if (Array.IndexOf(StateManager.user.unlocked_map, "Map5") > 0) World5Btn.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -47,10 +49,10 @@ public class WorldSelectionController : MonoBehaviour
         SceneManager.LoadScene("Map4");
     }
 
-    public void Btn_World5_Clicked()
-    {
-        //SceneManager.LoadScene("Map5");
-    }
+    //public void Btn_World5_Clicked()
+    //{
+    //    //SceneManager.LoadScene("Map5");
+    //}
 
     public void Btn_Challenge_World_Clicked()
     {

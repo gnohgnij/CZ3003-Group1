@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class StudentHomeController : MonoBehaviour
@@ -46,7 +47,7 @@ public class StudentHomeController : MonoBehaviour
     public void Btn_Enter_World_Clicked()
     {
         Disable_Tag();
-        SceneManager.LoadScene("WorldSelection");
+        StartCoroutine(Get_Unlocked_Map());
     }
 
     public void Btn_View_Leaderboard_Clicked()
@@ -62,5 +63,35 @@ public class StudentHomeController : MonoBehaviour
         StateManager.assignmentQuestionSize = 0;
         StateManager.assignmentQuestions = null;
         SceneManager.LoadScene("AttemptAssignment");
+    }
+
+    public IEnumerator Get_Unlocked_Map()
+    {
+        string accountUrl = StateManager.apiUrl + "account/" + StateManager.user.uid;
+
+        UnityWebRequest accUwr = UnityWebRequest.Get(accountUrl);
+        yield return accUwr.SendWebRequest();
+
+        if (accUwr.result == UnityWebRequest.Result.ConnectionError)
+        {
+            Message.text = "Network Error";
+            Message.gameObject.SetActive(true);
+        }
+        else
+        {
+            UserResult userResult = JsonUtility.FromJson<UserResult>(accUwr.downloadHandler.text);
+            if (userResult.status == "fail")
+            {
+                Message.text = "Account Error. Please contact the admin";
+                Message.gameObject.SetActive(true);
+            }
+            else
+            {
+                string password = StateManager.user.password;
+                StateManager.user = userResult.data;
+                StateManager.user.password = password;
+                SceneManager.LoadScene("WorldSelection");
+            }
+        }
     }
 }
