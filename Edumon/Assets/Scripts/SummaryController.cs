@@ -57,7 +57,7 @@ public class SummaryController : MonoBehaviour
             }
         }
 
-        string scoreURL = attemptURL + "email" + email.ToString(); //https://cz3003-edumon.herokuapp.com/attempt/email and add in the persons email
+        string scoreURL = attemptURL + "email/" + email.ToString(); //https://cz3003-edumon.herokuapp.com/attempt/email/ and add in the persons email
 
         UnityWebRequest scoreRequest = UnityWebRequest.Get(scoreURL);
         yield return scoreRequest.SendWebRequest();
