@@ -203,7 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab667a12d89df114d964ab78907fb44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  challengeURL: https://cz3003-edumon.herokuapp.com/challenge/email/
   buttonPrefab: {fileID: 5869696262678705891, guid: 38a05db5962b3934db51b37e897e59d7,
     type: 3}
   ParentPanel: {fileID: 43186053}
@@ -390,7 +389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976483960}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.20718487, y: 1.2560774, z: -9.308974}
+  m_LocalPosition: {x: 99.81, y: 1.26, z: -9.308974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 765465155}
