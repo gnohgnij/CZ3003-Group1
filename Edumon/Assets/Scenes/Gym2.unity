@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog:
     lines:
-    - Hi, can I have your order?
+    - Let's fight!
 --- !u!61 &9384549
 BoxCollider2D:
   m_ObjectHideFlags: 0
