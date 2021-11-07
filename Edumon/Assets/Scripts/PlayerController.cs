@@ -97,7 +97,11 @@ public class PlayerController : MonoBehaviour
             Interact();
 
         if(Input.GetKeyDown(KeyCode.Escape) && 
-        (SceneManager.GetActiveScene().name == "Map1" || SceneManager.GetActiveScene().name == "Map2" || SceneManager.GetActiveScene().name == "Map3" || SceneManager.GetActiveScene().name == "Map4"))
+        (SceneManager.GetActiveScene().name == "Map1" || SceneManager.GetActiveScene().name == "Map2" || 
+        SceneManager.GetActiveScene().name == "Map3" || SceneManager.GetActiveScene().name == "Map4" ||
+        SceneManager.GetActiveScene().name == "Gym1" || SceneManager.GetActiveScene().name == "Gym2" ||
+        SceneManager.GetActiveScene().name == "Gym3" || SceneManager.GetActiveScene().name == "Gym4" ||
+        SceneManager.GetActiveScene().name == "Gym5"))
             SceneManager.LoadScene("StudentHome");
     }
 
