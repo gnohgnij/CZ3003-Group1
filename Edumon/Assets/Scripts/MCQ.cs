@@ -186,7 +186,7 @@ public class MCQ : MonoBehaviour
         if (String.Equals(QuestionGroup, "Challenge")) {
             SceneManager.LoadScene("Challenge");
         } else if (String.Equals(QuestionGroup, "Gym")) {
-            SceneManager.LoadScene(CurrentGym);
+            SceneManager.LoadScene("GymOutcome");
         }
     }
 }

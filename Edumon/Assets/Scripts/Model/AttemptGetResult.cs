@@ -4,6 +4,6 @@ using System;
 public class AttemptGetResult
 {
     public string status;
-    public AttemptModel data;
+    public AttemptModel[] data;
     public string message;
 }

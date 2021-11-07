@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class AttemptModel
@@ -9,4 +10,5 @@ public class AttemptModel
     public string user_email;
     public string question_group;
     public int score;
+    public Dictionary<string, int> user_answers;
 }
