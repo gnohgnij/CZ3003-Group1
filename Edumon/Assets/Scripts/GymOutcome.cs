@@ -16,7 +16,7 @@ public class GymOutcome : MonoBehaviour
     private static string GYM2 = "9vF4uGW4b7oop1EUK1Sm";
     private static string GYM3 = "IFBMLqL6Mb16fagAChaO";
     private static string GYM4 = "bcO5PTXYNsHaREccZovg";
-    private string currentGym;
+    private string currentGym, nextMap;
     private int passingScore, maxScore;
 
     // Start is called before the first frame update
@@ -24,41 +24,48 @@ public class GymOutcome : MonoBehaviour
     {
         currentGym = StateManager.currentGym;
         string userEmail = StateManager.user.email;
-        StartCoroutine(getGymScores());
+        // StartCoroutine(getGymScores());
+        StartCoroutine(UpdateStateManagerUser(userEmail));
         StartCoroutine(CheckIfPass(userEmail));
     }
 
-    private IEnumerator getGymScores()
-    {
-        string gymID="";
-        if (currentGym == "Gym1") { gymID = GYM1; }
-        else if (currentGym == "Gym2") { gymID = GYM2; }
-        else if (currentGym == "Gym3") { gymID = GYM3; }
-        else if (currentGym == "Gym4") { gymID = GYM4; }
-        string gymURL = URL + "gym/" + gymID;
+    // private IEnumerator getGymScores()
+    // {
+    //     string gymID="";
+    //     if (currentGym == "Gym1") { gymID = GYM1; nextMap = "Map2"; }
+    //     else if (currentGym == "Gym2") { gymID = GYM2; nextMap = "Map3"; }
+    //     else if (currentGym == "Gym3") { gymID = GYM3; nextMap = "Map4"; }
+    //     else if (currentGym == "Gym4") { gymID = GYM4; nextMap = "Map5"; }
+    //     string gymURL = URL + "gym/" + gymID;
 
-        using (UnityWebRequest gymRequest = UnityWebRequest.Get(gymURL))
-        {
-            yield return gymRequest.SendWebRequest();
+    //     using (UnityWebRequest gymRequest = UnityWebRequest.Get(gymURL))
+    //     {
+    //         yield return gymRequest.SendWebRequest();
 
-            if (gymRequest.result == UnityWebRequest.Result.ConnectionError)
-            {
-                Debug.Log(gymRequest.error);
-            }
-            else
-            {
-                GymResult gymResult = JsonUtility.FromJson<GymResult>(gymRequest.downloadHandler.text);
-                Gym gym = gymResult.data;
-                passingScore = gym.passing_score;
-                maxScore = gym.question_count;
-            }
-        }
-    }
+    //         if (gymRequest.result == UnityWebRequest.Result.ConnectionError)
+    //         {
+    //             Debug.Log(gymRequest.error);
+    //         }
+    //         else
+    //         {
+    //             GymResult gymResult = JsonUtility.FromJson<GymResult>(gymRequest.downloadHandler.text);
+    //             Gym gym = gymResult.data;
+    //             passingScore = gym.passing_score;
+    //             maxScore = gym.question_count;
+    //         }
+    //     }
+    // }
 
     private IEnumerator CheckIfPass(string userEmail)
     {
         // get attempt score
         string userAttemptsURL = URL + "attempt/email/" + userEmail;
+
+        if (currentGym == "Gym1") { nextMap = "Map2"; }
+        else if (currentGym == "Gym2") { nextMap = "Map3"; }
+        else if (currentGym == "Gym3") { nextMap = "Map4"; }
+        else if (currentGym == "Gym4") { nextMap = "Map5"; }
+
         using (UnityWebRequest attemptRequest = UnityWebRequest.Get(userAttemptsURL))
         {
             yield return attemptRequest.SendWebRequest();
@@ -69,19 +76,21 @@ public class GymOutcome : MonoBehaviour
             }
             else
             {
-                yield return new WaitForSecondsRealtime(1);
+                // yield return new WaitForSecondsRealtime(1);
                 AttemptGetResult attemptResult = JsonUtility.FromJson<AttemptGetResult>(attemptRequest.downloadHandler.text);              
                 AttemptModel[] attempts = attemptResult.data;
                 Debug.Log("number of attempts:" + attempts.Length.ToString());
-                AttemptModel currAttempt = attempts[attempts.Length-1];
+                AttemptModel currAttempt = attempts[attempts.Length-1]; //change how to retrieve score
                 
                 int score = currAttempt.score;
                 string text;
-                if (score >= passingScore)
+                // if (score >= passingScore)
+                if (Array.IndexOf(StateManager.user.unlocked_map, nextMap) > 0)
                 {
-                    text = "Good job! You passed the gym battle with a score of "+ score.ToString() +" out of "+ maxScore.ToString() +".";
-                    if (currentGym != "Gym4") {text += "You may now move on to the next map!";}
-                    StartCoroutine(UpdateStateManagerUser(userEmail));
+                    // text = "Good job! You passed the gym battle with a score of "+ score.ToString() +" out of "+ maxScore.ToString() +".";
+                    text = "Good job! You passed the gym battle.";
+                    if (currentGym == "Gym4") {text += "You have successfully completed all gym battles in this game.";}
+                    else {text += "You may now move on to the next map!"; }
                 }
                 else
                 {
@@ -96,9 +105,10 @@ public class GymOutcome : MonoBehaviour
 
     public void RenameTMPLabel(string text, TextMeshProUGUI label) => label.text = text;
 
+
     private IEnumerator UpdateStateManagerUser(string userEmail)
     {
-        string userURL = URL + "account/" + userEmail;
+        string userURL = URL + "account/email/" + userEmail;
 
         using (UnityWebRequest userRequest = UnityWebRequest.Get(userURL))
         {
@@ -111,9 +121,17 @@ public class GymOutcome : MonoBehaviour
             else
             {
                 UserResult userResult = JsonUtility.FromJson<UserResult>(userRequest.downloadHandler.text);
+                // StateManager.user = userResult.data;
                 User user = userResult.data;
-                Array.Copy(user.unlocked_map, StateManager.user.unlocked_map, user.unlocked_map.Length);
+                Debug.Log("user.unlocked_map[0]: " + user.unlocked_map[0]);
+                Debug.Log("StateManager.user.unlocked_map[0]: " + StateManager.user.unlocked_map[0]);
+                // string[] StateManager.user.unlocked_map = new string[user.unlocked_map.Length];
+                // string[] temp = new string[user.unlocked_map.Length];
+                // items.CopyTo(temp, 0);
+                // items = temp;
+                // Array.Copy(user.unlocked_map, StateManager.user.unlocked_map, user.unlocked_map.Length);
                 // StateManager.user.unlocked_map = user.unlocked_map;
+                StateManager.user = user;
             }
         }
     }
