@@ -14,8 +14,8 @@ public class SummaryController : MonoBehaviour
     public TextMeshProUGUI GymHistory;
     private string usernameInput;
     private string email;
-    //private List<Assignment> listOfAssignments = new List<Assignment>();
-    //private List<Challenge> listOfChallenges = new List<Challenge>();
+    private List<Assignment> listOfAssignments = new List<Assignment>();
+    private List<Challenge> listOfChallenges = new List<Challenge>();
 
     private string attemptURL = "https://cz3003-edumon.herokuapp.com/attempt/email/";
     private string accountURL = "https://cz3003-edumon.herokuapp.com/account";
@@ -33,6 +33,13 @@ public class SummaryController : MonoBehaviour
 
     public void OnGenerateReportButton() //will run GetEmail when the generate report button clicked
     {
+        //reset the report
+        AssignmentHistory.text = "";
+        GymHistory.text = "";
+        ChallengeHistory.text = "";
+        listOfAssignments.Clear();
+        listOfChallenges.Clear();
+
         StartCoroutine(GetEmail(usernameInput));
     }
 
@@ -52,7 +59,7 @@ public class SummaryController : MonoBehaviour
                 Account[] accounts = accountResponse.data;
                 for (int i = 0; i < (accounts.Count()); i++)
                 {
-                    if ((accounts[i].username) == usernameInput;
+                    if ((accounts[i].username) == usernameInput)
                     {
                         email = accounts[i].email; //get student's email
                         yield return StartCoroutine(GetReport(attemptURL + email.ToString()));
@@ -78,37 +85,86 @@ public class SummaryController : MonoBehaviour
                 AttemptEmailResponse attemptEmailResponse = JsonUtility.FromJson<AttemptEmailResponse>(jsonString);
                 Attempt[] attempt = attemptEmailResponse.data;
 
+                yield return StartCoroutine(GetAllAssignments());
+                yield return StartCoroutine(GetAllChallenges());
+
+                //key - question_set, value - score
+                Dictionary<string, int> map = new Dictionary<string, int>();
+                foreach (Attempt a in attempt)
+                {
+                    //if student has multiple attempts on the same qn set, 
+                    //take the attempt with the highest score
+                    if (!map.ContainsKey(a.question_set))
+                        map.Add(a.question_set, a.score);
+                    else
+                    {
+                        int initialScore = map[a.question_set];
+                        if (initialScore < a.score)
+                        {
+                            map.Remove(a.question_set);
+                            map.Add(a.question_set, a.score);
+                        }
+                    }
+                }
+
                 string AssignmentHist = "";
                 string GymHist = "";
                 string ChallengeHist = "";
 
-                for (int i = 0; i < (attempt.Count()); i++) //loops through all attempts 
+                //match question set with gym_id, challenge id and assignment id
+                for (int i = 0; i < listOfAssignments.Count; i++)
                 {
-                    if ((attempt[i].question_group) == "ASSIGNMENT") //sort into assignment, gym and challenge scores
+                    if (map.ContainsKey(listOfAssignments[i].assignment_id))
                     {
-                        if (!string.IsNullOrEmpty(AssignmentHist))
-                        {
-                            AssignmentHist += ", ";                            
-                        }
-                        AssignmentHist += attempt[i].score;
-                    }
-                    if ((attempt[i].question_group) == "GYM")
-                    {
-                        if (!string.IsNullOrEmpty(GymHist))
-                        {
-                            GymHist += ", ";
-                        }
-                        GymHist += attempt[i].score;
-                    }
-                    if ((attempt[i].question_group) == "CHALLENGE")
-                    {
-                        if (!string.IsNullOrEmpty(ChallengeHist))
-                        {
-                            ChallengeHist += ", ";
-                        }
-                        ChallengeHist+=attempt[i].score;
+                        AssignmentHist += "Assignment (" + listOfAssignments[i].assignment_id + ") Score - " + map[listOfAssignments[i].assignment_id] + "\n";
                     }
                 }
+
+                for (int i = 0; i < listOfChallenges.Count; i++)
+                {
+                    if (map.ContainsKey(listOfChallenges[i].challenge_id))
+                    {
+                        ChallengeHist += "Challenge (From: " + listOfChallenges[i].from_email + ") Score - " + map[listOfChallenges[i].challenge_id] + "\n";
+                    }
+                }
+
+                for (int i = 0; i < StateManager.gymIdList.Length; i++)
+                {
+                    if (map.ContainsKey(StateManager.gymIdList[i]))
+                    {
+                        GymHist += "Gym " + (i+1) + " Score - " + map[StateManager.gymIdList[i]] + "\n";
+                    }
+                }
+
+                
+
+                // for (int i = 0; i < (attempt.Count()); i++) //loops through all attempts 
+                // {
+                //     if ((attempt[i].question_group) == "ASSIGNMENT") //sort into assignment, gym and challenge scores
+                //     {
+                //         if (!string.IsNullOrEmpty(AssignmentHist))
+                //         {
+                //             AssignmentHist += ", ";                            
+                //         }
+                //         AssignmentHist += attempt[i].score;
+                //     }
+                //     if ((attempt[i].question_group) == "GYM")
+                //     {
+                //         if (!string.IsNullOrEmpty(GymHist))
+                //         {
+                //             GymHist += ", ";
+                //         }
+                //         GymHist += attempt[i].score;
+                //     }
+                //     if ((attempt[i].question_group) == "CHALLENGE")
+                //     {
+                //         if (!string.IsNullOrEmpty(ChallengeHist))
+                //         {
+                //             ChallengeHist += ", ";
+                //         }
+                //         ChallengeHist+=attempt[i].score;
+                //     }
+                // }
                 
                 //udpate text
                 if (string.IsNullOrEmpty(AssignmentHist)){
@@ -134,12 +190,69 @@ public class SummaryController : MonoBehaviour
             }
         }
     }
+
+    IEnumerator GetAllAssignments()
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get("https://cz3003-edumon.herokuapp.com/assignment"))
+        {
+            //web request for email
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError) //checks for internet error?
+            {
+                Debug.LogError(webRequest.error);
+            }
+            else
+            {
+                Debug.Log("Success");
+                string jsonString = webRequest.downloadHandler.text; //creates jsonnode with full parsed data?
+                Debug.Log(jsonString);
+
+                ListOfAssignments assignmentResponse = JsonUtility.FromJson<ListOfAssignments>(jsonString);
+                foreach (Assignment a in assignmentResponse.data)
+                {
+                    listOfAssignments.Add(a);
+                }
+                Debug.Log(listOfAssignments.Count);
+                // AssignmentText.text = string.Join(", ", listOfAssignments[1]);
+            }
+
+        }
+    }
+
+
+    IEnumerator GetAllChallenges()
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get("https://cz3003-edumon.herokuapp.com/challenge"))
+        {
+            //web request for email
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError) //checks for internet error?
+            {
+                Debug.LogError(webRequest.error);
+            }
+            else
+            {
+                Debug.Log("Success");
+                string jsonString = webRequest.downloadHandler.text; //creates jsonnode with full parsed data?
+                Debug.Log(jsonString);
+
+                ListOfChallenges challengeResponse = JsonUtility.FromJson<ListOfChallenges>(jsonString);
+                foreach (Challenge c in challengeResponse.data)
+                {
+                    listOfChallenges.Add(c);
+                }
+                Debug.Log(listOfChallenges.Count);
+            }
+        }
+    }
 }
 
 
 
 
-   /* IEnumerator GetReport(string uri)
+    /*IEnumerator GetReport(string uri)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
@@ -214,7 +327,7 @@ public class SummaryController : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
 
 
@@ -222,73 +335,18 @@ public class SummaryController : MonoBehaviour
 
 
 
-     IEnumerator GetAllAssignments()
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get("https://cz3003-edumon.herokuapp.com/assignment"))
-        {
-            //web request for email
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.result == UnityWebRequest.Result.ConnectionError) //checks for internet error?
-            {
-                Debug.LogError(webRequest.error);
-            }
-            else
-            {
-                Debug.Log("Success");
-                string jsonString = webRequest.downloadHandler.text; //creates jsonnode with full parsed data?
-                Debug.Log(jsonString);
-
-                ListOfAssignments assignmentResponse = JsonUtility.FromJson<ListOfAssignments>(jsonString);
-                foreach (Assignment a in assignmentResponse.data)
-                {
-                    listOfAssignments.Add(a);
-                }
-                Debug.Log(listOfAssignments.Count);
-                AssignmentText.text = string.Join(", ", listOfAssignments[1]);
-            }
-
-        }
-    }
-
-
-    IEnumerator GetAllChallenges()
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get("https://cz3003-edumon.herokuapp.com/challenge"))
-        {
-            //web request for email
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.result == UnityWebRequest.Result.ConnectionError) //checks for internet error?
-            {
-                Debug.LogError(webRequest.error);
-            }
-            else
-            {
-                Debug.Log("Success");
-                string jsonString = webRequest.downloadHandler.text; //creates jsonnode with full parsed data?
-                Debug.Log(jsonString);
-
-                ListOfChallenges challengeResponse = JsonUtility.FromJson<ListOfChallenges>(jsonString);
-                foreach (Challenge c in challengeResponse.data)
-                {
-                    listOfChallenges.Add(c);
-                }
-                Debug.Log(listOfChallenges.Count);
-            }
-        }
-    }
+    
 
 
 
 
-}*/
-    [System.Serializable]
-    public class ListOfAssignments
-    {
-        public bool success;
-        public Assignment[] data;
-    }
+
+[System.Serializable]
+public class ListOfAssignments
+{
+    public bool success;
+    public Assignment[] data;
+}
 
 
 [System.Serializable]
