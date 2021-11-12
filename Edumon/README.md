@@ -23,7 +23,7 @@ https://unity3d.com/get-unity/download
 
 * Navigate to **/Scenes** from **/Assets** within Project
 
-* Double click on Login scene </br>
+* Double click on **Main Menu** scene </br>
 Click on the play button at the top middle corner of screen
 
 ENJOY!
