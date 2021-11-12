@@ -9,21 +9,21 @@ Edumon is a self-contained game to gamify and socialise the teaching and learnin
 * clone git repo with
 ```
 git clone https://github.com/gnohgnij/CZ3003-Group1 $name OR
+code -> download zip
 ```
-code --> download zip
 
 * download Unity Hub with:
 https://unity3d.com/get-unity/download
 
 * click on new and add cloned git directory to Unity Hub
 
-* install Unity v2020.3.18f1
+* install Unity **v2020.3.18f1**
 
-* click on Edumon
+* click on **Edumon**
 
-* navigate to /Scenes from /Assets
+* navigate to **/Scenes** from **/Assets** within Project
 
-* double click on Login scene
+* double click on Login scene </br>
 click on the play button at the top middle corner of screen
 
 ENJOY!
