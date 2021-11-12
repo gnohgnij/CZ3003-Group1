@@ -134,7 +134,7 @@ public class StudentEditProfileController : MonoBehaviour
                         WarningText.text = "Password does not match";
                         WarningText.gameObject.SetActive(true);
                     }
-                    else if (!(_password.Any(char.IsUpper) && _password.Any(char.IsLower) && _password.Any(char.IsDigit) && _password.Any(char.IsSymbol)))
+                    else if (!(_password.Any(char.IsUpper) && _password.Any(char.IsLower) && _password.Any(char.IsDigit) && (_password.Any(char.IsSymbol) || _password.Any(char.IsPunctuation))))
                     {
                         WarningText.text = "Please ensure that your password contains\nuppercase, lowercase, number, and symbols";
                         WarningText.gameObject.SetActive(true);
