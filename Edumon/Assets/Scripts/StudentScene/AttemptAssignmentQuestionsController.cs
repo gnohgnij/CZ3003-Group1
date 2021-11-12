@@ -186,10 +186,9 @@ public class AttemptAssignmentQuestionsController : MonoBehaviour
             }
             else
             {
-                //StateManager.studentHomeStatusTag = true;
-                //StateManager.studentHomeStatusMessage = "Assignment submitted";
-                StateManager.attemptAssignmentId = attempPostResult.data;
-                SceneManager.LoadScene("AssignmentScore");
+                StateManager.studentHomeStatusTag = true;
+                StateManager.studentHomeStatusMessage = "Assignment submitted";
+                SceneManager.LoadScene("StudentHome");
             }
         }
     }
